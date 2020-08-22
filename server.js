@@ -13443,6 +13443,34 @@ client.on("message", message => {
  `);
   }
 });
+client.on("message", message => {
+  if (message.author.bot) return;
+
+  if (message.content === prefix + "help-vip-hosting-2") {
+    if (message.channel.id !== "692785469255057478")
+      return message.reply(
+        `** لا يمكنك كتابة امر vip هنا توجة الي روم <#692785469255057478> ** <a:585881512587821089:677203439037448193>`
+      );
+    let staff = message.guild
+      .member(message.author)
+      .roles.find("name", "⌥  VIP");
+    if (!staff)
+      return message.reply(
+        `**<a:591621003919097856:594172692865744900> | __T__here __i__s __n__o __m__atching __r__ank __ <@&603355148995264513>__ .. **`
+      );
+    message.channel.send(
+      "<a:587128813712965634:602082800660643868> | ** __T__he __c__ode __h__as __b__een __s__ent __in __In __y__our **"
+    );
+
+    message.author.sendMessage(`
+  **
+<a:33:674311916776194084> | __D__escribe : __H__osting __H__eroku
+<a:28:674311913576071179> | __C__ode : https://dashboard.heroku.com/
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __H__osting
+ **
+ `);
+  }
+});
 
 client.on("message", message => {
   if (message.author.bot) return;
@@ -13454,4 +13482,80 @@ client.on("message", message => {
       );
     let staff = message.guild
       .member(message.author)
-      .roles.find("name", "⌥  VIP"
+      .roles.find("name", "⌥  VIP");
+    if (!staff)
+      return message.reply(
+        `**<a:591621003919097856:594172692865744900> | __T__here __i__s __n__o __m__atching __r__ank __ <@&603355148995264513>__ .. **`
+      );
+    message.channel.send(
+      "<a:587128813712965634:602082800660643868> | ** __T__he __c__ode __h__as __b__een __s__ent __in __In __y__our **"
+    );
+
+    message.author.sendMessage(`
+  **
+<a:33:674311916776194084> | __D__escribe : __H__osting __R__epl
+<a:28:674311913576071179> | __C__ode : https://repl.it/repls
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __H__osting
+ **
+ `);
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+
+  if (message.content === prefix + "help-vip-hosting-4") {
+    if (message.channel.id !== "692785469255057478")
+      return message.reply(
+        `** لا يمكنك كتابة امر vip هنا توجة الي روم <#692785469255057478> ** <a:585881512587821089:677203439037448193>`
+      );
+    let staff = message.guild
+      .member(message.author)
+      .roles.find("name", "⌥  VIP");
+    if (!staff)
+      return message.reply(
+        `**<a:591621003919097856:594172692865744900> | __T__here __i__s __n__o __m__atching __r__ank __ <@&603355148995264513>__ .. **`
+      );
+    message.channel.send(
+      "<a:587128813712965634:602082800660643868> | ** __T__he __c__ode __h__as __b__een __s__ent __in __In __y__our **"
+    );
+
+    message.author.sendMessage(`
+  **
+<a:33:674311916776194084> | __D__escribe : __H__osting __E__vennode
+<a:28:674311913576071179> | __C__ode : https://evennode.com
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __H__osting
+ **
+ `);
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+
+  if (message.content === prefix + "help-vip-hosting-5") {
+    if (message.channel.id !== "692785469255057478")
+      return message.reply(
+        `** لا يمكنك كتابة امر vip هنا توجة الي روم <#692785469255057478> ** <a:585881512587821089:677203439037448193>`
+      );
+    let staff = message.guild
+      .member(message.author)
+      .roles.find("name", "⌥  VIP");
+    if (!staff)
+      return message.reply(
+        `**<a:591621003919097856:594172692865744900> | __T__here __i__s __n__o __m__atching __r__ank __ <@&603355148995264513>__ .. **`
+      );
+    message.channel.send(
+      "<a:587128813712965634:602082800660643868> | ** __T__he __c__ode __h__as __b__een __s__ent __in __In __y__our **"
+    );
+
+    message.author.sendMessage(`
+  **
+<a:33:674311916776194084> | __D__escribe : __G__ithub
+<a:28:674311913576071179> | __C__ode : https://github.com
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __H__osting
+ **
+ `);
+  }
+});
+
