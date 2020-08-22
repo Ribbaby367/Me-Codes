@@ -8760,10 +8760,10 @@ message.channel.send(`${message.author}, Done, Go ahead, Folder <:58018522738170
 
 
 
-const buy = JSON.parse(fs.readFileSync('./buy1.json' , 'utf8'));
+const buy1 = JSON.parse(fs.readFileSync('./buy1.json' , 'utf8'));
 client.on('message',message =>{
   if(message.content.startsWith(prefix + 'buy 11111111111')) {
-  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  if(!buy1[message.guild.id]) buy1[message.guild.id] = {
   role:'null',
   price:'null',
   transfer:'null',
@@ -8775,7 +8775,7 @@ client.on('message',message =>{
   let role = message.guild.roles.find('name',args)||message.guild.roles.find('id',args);
   if(!role) return message.channel.send(`🙄 I Can't find this role`);
   buy[message.guild.id].role = role.id
-  fs.writeFile("./buy1.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  fs.writeFile("./buy1.json", JSON.stringify(buy1), (err) => {if (err) console.error(err)})
   message.channel.send(new Discord.RichEmbed()
   .setColor('#35393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
   .setAuthor('Change settings',message.guild.iconURL)
@@ -8784,18 +8784,18 @@ client.on('message',message =>{
   }
   if(message.content.startsWith(prefix+'buy aaaa1')) {
   if(!message.member.hasPermission('MANAGE_GUILD')) return;
-  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  if(!buy1[message.guild.id]) buy1[message.guild.id] = {
   role:'null',
   price:'null',
   transfer:'null',
   onoff:'Off'//
-  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  };fs.writeFile("./buy1.json",JSON.stringify(buy1),(err)=>{if(err)console.error(err)})
   let args = message.content.split(" ").slice(2).join(" ");
   if(!args) return message.channel.send(`🙄 Please Type the role Price`)
   if(isNaN(parseInt(args))) return message.channel.send(`🙄 The price is wrong!`)
   if(parseInt(args)<0) return message.channel.send(`🙄 The price is wrong!`)
-  buy[message.guild.id].price = args
-  fs.writeFile("./buy1.json", JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  buy1[message.guild.id].price = args
+  fs.writeFile("./buy1.json", JSON.stringify(buy1),(err)=>{if(err)console.error(err)})
   message.channel.send(new Discord.RichEmbed()
   .setColor('#36393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
   .setAuthor('Change settings',message.guild.iconURL)
@@ -8804,15 +8804,15 @@ client.on('message',message =>{
   }
   if(message.content.startsWith(prefix+'buy 1111111')) {
   if(!message.member.hasPermission('MANAGE_GUILD')) return;
-  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  if(!buy1[message.guild.id]) buy1[message.guild.id] = {
   role:'null',
   price:'null',
   transfer:'null',
   onoff:'Off'
-  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  };fs.writeFile("./buy1.json",JSON.stringify(buy1),(err)=>{if(err)console.error(err)})
   let user = message.mentions.members.first() || message.guild.members.get(message.content.split(" ")[2])
   buy[message.guild.id].transfer = user.id
-  fs.writeFile("./buy1.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  fs.writeFile("./buy1.json", JSON.stringify(buy1), (err) => {if (err) console.error(err)})
   message.channel.send(new Discord.RichEmbed()
   .setColor('#36393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
   .setAuthor('Change settings',message.guild.iconURL)
@@ -8821,14 +8821,14 @@ client.on('message',message =>{
   }
   if(message.content.startsWith(prefix+'buy on')) {
   if(!message.member.hasPermission('MANAGE_GUILD')) return;
-  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  if(!buy1[message.guild.id]) buy1[message.guild.id] = {
   role:'null',
   price:'null',
   transfer:'null',
   onoff:'Off'
-  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  };fs.writeFile("./buy1.json",JSON.stringify(buy1),(err)=>{if(err)console.error(err)})
   buy[message.guild.id].onoff = 'On'
-  fs.writeFile("./buy1.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  fs.writeFile("./buy1.json", JSON.stringify(buy1), (err) => {if (err) console.error(err)})
   let on1 = new Discord.RichEmbed()
   .setColor('#36393e')
   .setDescription(`**\`\`\`The BuyRole Has Been Enabled\`\`\`**`)
@@ -8836,37 +8836,37 @@ client.on('message',message =>{
   }
   if(message.content.startsWith(prefix+'buy off')) {
   if(!message.member.hasPermission('MANAGE_GUILD')) return;
-  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  if(!buy1[message.guild.id]) buy1[message.guild.id] = {
   role:'null',
   price:'null',
   transfer:'null',
   onoff:'Off'
-  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  };fs.writeFile("./buy1.json",JSON.stringify(buy1),(err)=>{if(err)console.error(err)})
   buy[message.guild.id].onoff = 'Off'
-  fs.writeFile("./buy1.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  fs.writeFile("./buy1.json", JSON.stringify(buy1), (err) => {if (err) console.error(err)})
   let off1 = new Discord.RichEmbed()
   .setColor('#36393e')
   .setDescription(`**\`\`\`The BuyRole has been disabled\`\`\`**`)
   message.channel.send(off1)
   }
   if(message == prefix + 'buy vip+') {
-  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  if(!buy1[message.guild.id]) buy1[message.guild.id] = {
   role:'null',
   price:'null',
   transfer:'null',
   onoff:'Off'
   };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
   let pp = buy[message.guild.id].price
-  let brole = message.guild.roles.find('id',buy[message.guild.id].role)
+  let brole = message.guild.roles.find('id',buy1[message.guild.id].role)
   let btrans = buy[message.guild.id].transfer
   if(!brole) return message.channel.send(`🙁 Please setup the command again`)
   if(!message.guild.members.find('id',buy[message.guild.id].transfer))return message.channel.send(`🙁 Please setup the command again`)
   if(buy[message.guild.id].onoff === 'Off') return message.channel.send(`🙁 - the command has been disabled\nplease type __${prefix}buy on__ to turn it on`)
-  if(message.author.id === buy[message.guild.id].transfer) return message.channel.send(`you can't buy a rank because you can't transfer credits to your self 🤗`)
-  if(message.member.roles.find(r=>r.id == buy[message.guild.id].role)) return message.reply(`**You already have the rank \`${brole.name}\` ✅**`);
+  if(message.author.id === buy1[message.guild.id].transfer) return message.channel.send(`you can't buy a rank because you can't transfer credits to your self 🤗`)
+  if(message.member.roles.find(r=>r.id == buy1[message.guild.id].role)) return message.reply(`**You already have the rank \`${brole.name}\` ✅**`);
   message.channel.send(new Discord.RichEmbed()
   .setColor('#36393e')
-  .addField(`**Command:**`, `**\`#credits ${message.guild.members.get(buy[message.guild.id].transfer)} ${buy[message.guild.id].price}\`**`)).then(msgs=>{
+  .addField(`**Command:**`, `**\`#credits ${message.guild.members.get(buy1[message.guild.id].transfer)} ${buy1[message.guild.id].price}\`**`)).then(msgs=>{
   let lPrice = Math.floor(pp-(pp*(5/100)));
   let filter = response => response.author.id == "567703512763334685" && response.mentions._content.includes(`:moneybag: | ${message.author.username}, has transferred \`$${lPrice}\` to <@${buy[message.guild.id].transfer}>`);
   message.channel.awaitMessages(filter, { maxMatches: 1, time: 240000, errors: ['time'] })
@@ -8878,8 +8878,8 @@ client.on('message',message =>{
   .setAuthor(`New purchase`,`https://cdn.discordapp.com/attachments/584630360017469461/584687464334098432/581239984376381455.gif`)
   .addField(`**User :**`,`${message.author.id}، ${message.author}`,true)
   .addField(`**Role :**`,`\`\`\`${brole.name}\`\`\``,true)
-  .addField(`**💰 Rank Price :**`,`\`\`\`${buy[message.guild.id].price}$\`\`\``,true)
-  .addField(`**💳 Transferd To :**`,`<@${buy[message.guild.id].transfer}>`,true)
+  .addField(`**💰 Rank Price :**`,`\`\`\`${buy1[message.guild.id].price}$\`\`\``,true)
+  .addField(`**💳 Transferd To :**`,`<@${buy1[message.guild.id].transfer}>`,true)
   .addField(`**Date:**`,`\`\`\`${moment(message.author).format('DD/MM/YYYY')}\`\`\` `,true)
   .setTimestamp();
   if(log) log.send(gg)
@@ -8895,7 +8895,7 @@ message.member.removeRole(brole)
   message.author.send(new Discord.RichEmbed()
   .setColor("#36393e")
   .setTitle('Role VIP')
-  .setDescription(`\`\`\`RANK NAME: ${brole.name} RANK PRICE: ${buy[message.guild.id].price}$ \`\`\``)
+  .setDescription(`\`\`\`RANK NAME: ${brole.name} RANK PRICE: ${buy1[message.guild.id].price}$ \`\`\``)
   .setFooter(message.guild.name,message.guild.iconURL))
 })
 })
@@ -8924,17 +8924,17 @@ const attachment = new Discord.Attachment(buffer, 'Minesweeper.txt');
 message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
 }
 });
-const buy = JSON.parse(fs.readFileSync("./buy2.json", "utf8"));
+const buy2 = JSON.parse(fs.readFileSync("./buy2.json", "utf8"));
 client.on("message", message => {
   if (message.content.startsWith(prefix + "buy rol11111111111111")) {
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy2[message.guild.id])
+      buy2[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
@@ -8947,8 +8947,8 @@ client.on("message", message => {
       message.guild.roles.find("name", args) ||
       message.guild.roles.find("id", args);
     if (!role) return message.channel.send(`🙄 I Can't find this role`);
-    buy[message.guild.id].role = role.id;
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    buy2[message.guild.id].role = role.id;
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
     message.channel.send(
@@ -8962,14 +8962,14 @@ client.on("message", message => {
   }
   if (message.content.startsWith(prefix + "buy aaaa4")) {
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy2[message.guild.id])
+      buy2[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
     let args = message.content
@@ -8996,21 +8996,21 @@ client.on("message", message => {
   }
   if (message.content.startsWith(prefix + "buy tran31111111111111111")) {
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy2[message.guild.id])
+      buy2[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
     let user =
       message.mentions.members.first() ||
       message.guild.members.get(message.content.split(" ")[2]);
-    buy[message.guild.id].transfer = user.id;
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    buy2[message.guild.id].transfer = user.id;
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
     message.channel.send(
@@ -9024,18 +9024,18 @@ client.on("message", message => {
   }
   if (message.content.startsWith(prefix + "buy on3")) {
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy2[message.guild.id])
+      buy2[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
-    buy[message.guild.id].onoff = "On";
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    buy2[message.guild.id].onoff = "On";
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
     let on1 = new Discord.RichEmbed()
@@ -9045,18 +9045,18 @@ client.on("message", message => {
   }
   if (message.content.startsWith(prefix + "buy of")) {
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy2[message.guild.id])
+      buy2[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
     buy[message.guild.id].onoff = "Off";
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
     let off1 = new Discord.RichEmbed()
@@ -9065,32 +9065,32 @@ client.on("message", message => {
     message.channel.send(off1);
   }
   if (message == prefix + "buy premium") {
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy2[message.guild.id])
+      buy2[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy2.json", JSON.stringify(buy2), err => {
       if (err) console.error(err);
     });
-    let pp = buy[message.guild.id].price;
-    let brole = message.guild.roles.find("id", buy[message.guild.id].role);
+    let pp = buy2[message.guild.id].price;
+    let brole = message.guild.roles.find("id", buy2[message.guild.id].role);
     let btrans = buy[message.guild.id].transfer;
     if (!brole)
       return message.channel.send(`🙁 Please setup the command again`);
-    if (!message.guild.members.find("id", buy[message.guild.id].transfer))
+    if (!message.guild.members.find("id", buy2[message.guild.id].transfer))
       return message.channel.send(`🙁 Please setup the command again`);
-    if (buy[message.guild.id].onoff === "Off")
+    if (buy2[message.guild.id].onoff === "Off")
       return message.channel.send(
         `🙁 - the command has been disabled\nplease type __${prefix}buy on__ to turn it on`
       );
-    if (message.author.id === buy[message.guild.id].transfer)
+    if (message.author.id === buy2[message.guild.id].transfer)
       return message.channel.send(
         `you can't buy a rank because you can't transfer credits to your self 🤗`
       );
-    if (message.member.roles.find(r => r.id == buy[message.guild.id].role))
+    if (message.member.roles.find(r => r.id == buy2[message.guild.id].role))
       return message.reply(
         `**You already have the rank \`${brole.name}\` ✅**`
       );
@@ -9101,8 +9101,8 @@ client.on("message", message => {
           .addField(
             `**Command:**`,
             `**\`#credits ${message.guild.members.get(
-              buy[message.guild.id].transfer
-            )} ${buy[message.guild.id].price}\`**`
+              buy2[message.guild.id].transfer
+            )} ${buy2[message.guild.id].price}\`**`
           )
       )
       .then(msgs => {
@@ -9110,7 +9110,7 @@ client.on("message", message => {
         let filter = response =>
           response.author.id == "567703512763334685" &&
           response.mentions._content.includes(
-            `:moneybag: | ${message.author.username}, has transferred \`$${lPrice}\` to <@${buy[message.guild.id].transfer}>`
+            `:moneybag: | ${message.author.username}, has transferred \`$${lPrice}\` to <@${buy2[message.guild.id].transfer}>`
           );
         message.channel
           .awaitMessages(filter, {
@@ -9137,12 +9137,12 @@ client.on("message", message => {
               .addField(`**Role :**`, `\`\`\`${brole.name}\`\`\``, true)
               .addField(
                 `**💰 Rank Price :**`,
-                `\`\`\`${buy[message.guild.id].price}$\`\`\``,
+                `\`\`\`${buy2[message.guild.id].price}$\`\`\``,
                 true
               )
               .addField(
                 `**💳 Transferd To :**`,
-                `<@${buy[message.guild.id].transfer}>`,
+                `<@${buy2[message.guild.id].transfer}>`,
                 true
               )
               .addField(
@@ -10126,7 +10126,7 @@ client.on("message", message => {
       });
   }
 });
-const buy = JSON.parse(fs.readFileSync("./buy3.json", "utf8"));
+const buy3 = JSON.parse(fs.readFileSync("./buy3.json", "utf8"));
 client.on("message", message => {
   if (message.content.startsWith(prefix + "buy ro111le")) {
     if (!buy[message.guild.id])
@@ -10136,7 +10136,7 @@ client.on("message", message => {
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
@@ -10149,8 +10149,8 @@ client.on("message", message => {
       message.guild.roles.find("name", args) ||
       message.guild.roles.find("id", args);
     if (!role) return message.channel.send(`🙄 I Can't find this role`);
-    buy[message.guild.id].role = role.id;
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    buy3[message.guild.id].role = role.id;
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     message.channel.send(
@@ -10164,14 +10164,14 @@ client.on("message", message => {
   }
   if (message.content.startsWith(prefix + "buy aaaa2")) {
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy3[message.guild.id])
+      buy3[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     let args = message.content
@@ -10183,8 +10183,8 @@ client.on("message", message => {
       return message.channel.send(`🙄 The price is wrong!`);
     if (parseInt(args) < 0)
       return message.channel.send(`🙄 The price is wrong!`);
-    buy[message.guild.id].price = args;
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    buy3[message.guild.id].price = args;
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     message.channel.send(
@@ -10198,21 +10198,21 @@ client.on("message", message => {
   }
   if (message.content.startsWith(prefix + "buy a11111")) {
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy3[message.guild.id])
+      buy3[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     let user =
       message.mentions.members.first() ||
       message.guild.members.get(message.content.split(" ")[2]);
-    buy[message.guild.id].transfer = user.id;
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    buy3[message.guild.id].transfer = user.id;
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     message.channel.send(
@@ -10226,18 +10226,18 @@ client.on("message", message => {
   }
   if (message.content.startsWith(prefix + "buy on")) {
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy3[message.guild.id])
+      buy3[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     buy[message.guild.id].onoff = "On";
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     let on1 = new Discord.RichEmbed()
@@ -10247,18 +10247,18 @@ client.on("message", message => {
   }
   if (message.content.startsWith(prefix + "buy off")) {
     if (!message.member.hasPermission("MANAGE_GUILD")) return;
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy3[message.guild.id])
+      buy3[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
-    buy[message.guild.id].onoff = "Off";
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    buy3[message.guild.id].onoff = "Off";
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
     let off1 = new Discord.RichEmbed()
@@ -10267,32 +10267,32 @@ client.on("message", message => {
     message.channel.send(off1);
   }
   if (message == prefix + "buy vip") {
-    if (!buy[message.guild.id])
-      buy[message.guild.id] = {
+    if (!buy3[message.guild.id])
+      buy3[message.guild.id] = {
         role: "null",
         price: "null",
         transfer: "null",
         onoff: "Off"
       };
-    fs.writeFile("./buy3.json", JSON.stringify(buy), err => {
+    fs.writeFile("./buy3.json", JSON.stringify(buy3), err => {
       if (err) console.error(err);
     });
-    let pp = buy[message.guild.id].price;
-    let brole = message.guild.roles.find("id", buy[message.guild.id].role);
-    let btrans = buy[message.guild.id].transfer;
+    let pp = buy3[message.guild.id].price;
+    let brole = message.guild.roles.find("id", buy3[message.guild.id].role);
+    let btrans = buy3[message.guild.id].transfer;
     if (!brole)
       return message.channel.send(`🙁 Please setup the command again`);
-    if (!message.guild.members.find("id", buy[message.guild.id].transfer))
+    if (!message.guild.members.find("id", buy3[message.guild.id].transfer))
       return message.channel.send(`🙁 Please setup the command again`);
     if (buy[message.guild.id].onoff === "Off")
       return message.channel.send(
         `🙁 - the command has been disabled\nplease type __${prefix}buy on__ to turn it on`
       );
-    if (message.author.id === buy[message.guild.id].transfer)
+    if (message.author.id === buy3[message.guild.id].transfer)
       return message.channel.send(
         `you can't buy a rank because you can't transfer credits to your self 🤗`
       );
-    if (message.member.roles.find(r => r.id == buy[message.guild.id].role))
+    if (message.member.roles.find(r => r.id == buy3[message.guild.id].role))
       return message.reply(
         `**You already have the rank \`${brole.name}\` ✅**`
       );
@@ -10303,8 +10303,8 @@ client.on("message", message => {
           .addField(
             `**Command:**`,
             `**\`#credits ${message.guild.members.get(
-              buy[message.guild.id].transfer
-            )} ${buy[message.guild.id].price}\`**`
+              buy3[message.guild.id].transfer
+            )} ${buy3[message.guild.id].price}\`**`
           )
       )
       .then(msgs => {
@@ -10312,7 +10312,7 @@ client.on("message", message => {
         let filter = response =>
           response.author.id == "567703512763334685" &&
           response.mentions._content.includes(
-            `:moneybag: | ${message.author.username}, has transferred \`$${lPrice}\` to <@${buy[message.guild.id].transfer}>`
+            `:moneybag: | ${message.author.username}, has transferred \`$${lPrice}\` to <@${buy3[message.guild.id].transfer}>`
           );
         message.channel
           .awaitMessages(filter, {
@@ -10340,12 +10340,12 @@ client.on("message", message => {
               .addField(`**Role :**`, `\`\`\`${brole.name}\`\`\``, true)
               .addField(
                 `**💰 Rank Price :**`,
-                `\`\`\`${buy[message.guild.id].price}$\`\`\``,
+                `\`\`\`${buy3[message.guild.id].price}$\`\`\``,
                 true
               )
               .addField(
                 `**💳 Transferd To :**`,
-                `<@${buy[message.guild.id].transfer}>`,
+                `<@${buy3[message.guild.id].transfer}>`,
                 true
               )
               .addField(
@@ -10369,7 +10369,7 @@ client.on("message", message => {
                 .setColor("#36393e")
                 .setTitle("Role VIP")
                 .setDescription(
-                  `\`\`\`RANK NAME: ${brole.name} RANK PRICE: ${buy[message.guild.id].price}$ \`\`\``
+                  `\`\`\`RANK NAME: ${brole.name} RANK PRICE: ${buy3[message.guild.id].price}$ \`\`\``
                 )
                 .setFooter(message.guild.name, message.guild.iconURL)
             );
