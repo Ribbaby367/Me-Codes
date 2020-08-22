@@ -14,8 +14,8 @@ const botversion = require("./package.json").version;
 const fs = require("fs");
 const ms = require("ms");
 const prefix = "#";
-const devs = ["541532350719459348", "697517724649390151"];
-client.login("");
+const devs = ["697517724649390151"];
+client.login("NzM1NjAzNTg0NDAxNDA4MDQw.XxiqOQ.1crwllA4NV5SEQIHEpDoJ3vKdk4");
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
