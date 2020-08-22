@@ -1,0 +1,36 @@
+//البكجات:-
+//1- request
+
+
+client.on("message", async message => {
+  let prefix = "#";
+  const request = require("request");
+  let args = message.content.split(/[ ]+/);
+  let word = args.slice(1).join(" ");
+
+  if (message.content.startsWith(prefix + "gif")) {
+    try {
+      if (!word) return message.reply("You need to give something to search!");
+
+      request(
+        {
+          url:
+            "https://api.tenor.com/v1/search?q=" +
+            word +
+            "&key=5THPJ661F87H&limit=1",
+          json: true
+        },
+        async (req, res, json) => {
+          let embed = new Discord.RichEmbed()
+            .setFooter("Request By: " + message.author.username)
+            .setImage(json.results[0].media[0].gif.url)
+            .setColor("RANDOM");
+
+          message.channel.send(embed);
+        }
+      );
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});

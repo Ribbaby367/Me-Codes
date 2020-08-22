@@ -1,0 +1,32 @@
+client.on("message", async message => {
+let prefix = "#";
+if (message.content.startsWith(prefix + "clear")) {
+    try {
+      let num;
+      let args = message.content.split(/[ ]+/);
+      let word = args.slice(1).join(" ");
+      if (!isNaN(word)) {
+        num = parseInt(word);
+
+        if (num <= 100 && num > 1) {
+          message.delete();
+          message.channel.bulkDelete(num);
+          message.channel
+            .send(
+              "```javascript\n" + num + " messages have been deleted." + "```"
+            )
+            .then(message => message.delete(4000));
+        } else
+          message.reply(
+            "**You must enter a number between 2 and 100 for me to clear!**"
+          );
+      } else {
+        message.reply(
+          "**You must enter a number between 2 and 100 for me to clear!**"
+        );
+      }
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});

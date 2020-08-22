@@ -1,0 +1,45 @@
+//البكجات:-
+//1- moment-duration-format
+//2- pidusage
+//3- moment
+
+
+
+client.on("message", async message => {
+  let prefix = "#";
+  require("moment-duration-format");
+  const cpu = require("pidusage");
+  const moment = require("moment");
+
+  if (message.content.startsWith(prefix + "st")) {
+    try {
+      cpu(process.pid, async (err, stats) => {
+        const duration = moment
+          .duration(client.uptime)
+          .format(" D [days], H [hrs], m [mins], s [secs]");
+        const embed = new Discord.RichEmbed()
+          .setTitle(client.user.tag + " Status")
+          .setDescription(
+            `
+RAM Usage: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
+Uptime: ${duration}
+Users: ${client.users.size}
+Servers: ${client.guilds.size.toLocaleString()}
+Channels: ${client.channels.size.toLocaleString()}
+Status: ${client.user.presence.status}
+Game: ${client.user.presence.game}
+Discord.js: v11.2.0
+CPU Usage: ${Math.round(stats.cpu)}%
+Node.js: ${process.version}
+Startup Time: ${client.startuptime}ms
+Voice Connections: ${client.voiceConnections.size}`
+          )
+          .setColor("RANDOM");
+
+        message.channel.send(embed);
+      });
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});

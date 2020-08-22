@@ -1,0 +1,98 @@
+client.on("message", message => { // تقديم سبورت
+if(message.content.startsWith("#submit")) {
+if(!message.channel.guild) return;
+if(message.author.bot) return;
+let channel = message.guild.channels.find("name", "test")
+if(!channel) return message.reply("**من فضلك قم باختيار روم التقديمات**")
+if(channel) {
+message.channel.send( message.member + '`1`').then( (m) =>{
+m.edit( message.member + ', اسمك' )
+m.channel.awaitMessages( m1 => m1.author == message.author,{ maxMatches: 1, time: 60*1000 } ).then ( (m1) => {
+m1 = m1.first();
+var name = m1.content;
+m1.delete();
+m.edit(message.member + '`2`').then( (m) =>{
+m.edit( message.member + ', عمرك' )
+setTimeout(() => {
+m.delete()
+}, 2500);
+m.channel.awaitMessages( m2 => m2.author == message.author,{ maxMatches: 1, time: 60*1000 } ).then ( (m2) => {
+m2 = m2.first();
+var age = m2.content;
+m2.delete()
+message.channel.send( message.member + '`3`').then( (m) =>{
+m.edit( message.member + ' كم لك بالديسكورد' )
+setTimeout(() => {
+m.delete()
+}, 2500);
+m.channel.awaitMessages( m1 => m1.author == message.author,{ maxMatches: 1, time: 60*1000 } ).then ( (m3) => {
+m3 = m3.first();
+var ask = m3.content;
+m3.delete();
+message.channel.send( message.member + '`4`').then( (m) =>{
+m.edit( message.member + ', ماهي اللغة يلي تعرفها' )
+setTimeout(() => {
+m.delete()
+}, 2500);
+m.channel.awaitMessages( m1 => m1.author == message.author,{ maxMatches: 1, time: 60*1000 } ).then ( (m4) => {
+m4 = m4.first();
+var ask2 = m4.content;
+m4.delete();
+message.channel.send( message.member + '``5``').then( (m) =>{
+m.edit( message.member + ', كم تعطي نفسك في اللغة' )
+m.channel.awaitMessages( m1 => m1.author == message.author,{ maxMatches: 1, time: 60*1000 } ).then ( (m5) => {
+m5 = m5.first();
+var ask3 = m5.content;
+m5.delete();
+m.edit(message.member + ', Data is being sent').then( (mtime)=>{
+setTimeout(() => {
+let embed = new Discord.RichEmbed()
+.setAuthor(message.author.username, message.author.avatarURL) 
+.setColor('#c3cdff')
+.setTitle(`\`Apply Administartion\` \n سوف يتم الرد عليك قريبا من الادارة , \n > ID: ${message.author.id}`)
+.addField('> \`الاسم:\`', ` ** ${name} ** ` , true)
+.addField('> \`العمر:\`', ` ** ${age} ** ` , true)
+.addField('> \`كم له بالديسكورد:\`',`** ${ask} ** ` , true)
+.addField('> \`اللغة التي يعرفها:\` ',` ** ${ask2} ** ` , true)
+.addField('> \`تقيمه في اللغة: ?\`',` ** ${ask3} ** ` , true)
+channel.send(embed)
+}, 2500);
+setTimeout(() => {
+mtime.delete()
+}, 3000);
+})
+})
+})})
+})
+})
+})
+})
+})
+})
+})
+}
+}
+});
+client.on('message',async message => {
+let mention = message.mentions.members.first();
+let role = message.guild.roles.find(r => r.name === `VIP`)
+if(message.content.startsWith("#قبول")) {
+if(!message.channel.guild) return;
+let acRoom = message.guild.channels.find('name', 'apply1');
+if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return;
+if(!mention) return message.reply("Please Mention");
+acRoom.send(`> **  ${message.member} اهلا بك تم قبولك كا سبورت في سرفر مي كودز**`)
+message.member.addRole(role)
+}
+});
+
+client.on('message',async message => {
+let mention = message.mentions.members.first();
+if(message.content.startsWith("#رفض")) {
+if(!message.channel.guild) return;
+let acRoom = message.guild.channels.find('name', 'apply1');
+if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return;
+if(!mention) return message.reply("Please Mention");
+acRoom.send(`> ** ${message.member} نعتذر لك تم رفضك**`)
+}
+});

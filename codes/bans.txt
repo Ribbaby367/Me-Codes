@@ -1,0 +1,24 @@
+client.on("message", message => {
+  
+  if(message.author.bot) return;
+  
+  if(!message.content.startsWith(prefix)) return;
+  if(!message.guild) return;
+  if(message.content === (prefix + "bans")) {
+    
+    message.guild.fetchBans()
+    .then(bans => {
+          let i = 1;
+    let b = bans.size
+    let bb = bans.map(a => `${i++} - ${a}`).join(" \n ") 
+      let embed = new Discord.RichEmbed() 
+      .setColor("BLACK")
+      .setAuthor(`Found ${b} bans in this server`) 
+      .setDescription(`${bb}`)
+      .setFooter(`${client.user.username}`, client.user.avatarURL)
+      .setTimestamp();
+    message.channel.send(embed)
+    
+    })
+  }
+}) 

@@ -1,0 +1,18 @@
+client.on('message', async message => {
+let msg = message.content.toLowerCase();
+let sender = message.author;
+let args = message.content.slice(prefix.length).trim().split(" ");
+let cmd = args.shift().toLowerCase();
+
+let fetched = await db.fetch(`prefix_${message.guild.id}`);
+if(fetched === null)prefix = '!';
+else prefix = fetched;
+})
+client.on('message', message => {
+if(message.content.startsWith(prefix + 'set-prefix')){
+let args = message.content.split(' ').slice(1).join(' ');
+if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send(`**No No No You Don't Have Permission [\`ADMINISTRATOR\`]**`);
+db.set(`prefix_${message.guild.id}`,args)
+return message.channel.send(`**Done Set Prefix To \`[${args}]\`**`)
+}
+})

@@ -1,0 +1,58 @@
+client.on('message', async message => {
+if(message.author.bot) return undefined;
+if(message.channel.type !== 'text'){
+let active = await db.fetch(`support_${message.author.id}`);
+let guild = client.guilds.cache.get('665112456431009802');
+let channel, found = true;
+try {
+if(active) client.channels.cache.get(active.channelID).guild;
+} catch (e) {
+found = false;
+}
+if (!active || !found){
+active = {};
+channel = await guild.channels.create(`${message.author.username}-${message.author.discriminator}`, {
+parent: '703454898330665080',
+topic: `?complete to close the ticket | Support For ${message.author.tag} | (ID: ${message.author.id})`
+})
+let author = message.author
+const newChannel = new Discord.MessageEmbed()
+.setColor('#36393e')
+.setAuthor(author.tag,author.displayAvatarURL())
+.addField('User', author)
+.addField('ID', author.id)
+.setFooter(`Support Ticket Created`)
+await channel.send(newChannel);
+active.channelID = channel.id;
+active.targetID = author.id;
+}
+channel = client.channels.cache.get(active.channelID);
+await message.author.send(`**لقد تم رفع رسالتك لفريق ألأدارة سيتم التواصل معك في اقرب وقت ممكن :notepad_spiral:**`);
+const embed = new Discord.MessageEmbed()
+.setColor('#36393e')
+.setAuthor(message.author.tag,message.author.displayAvatarURL())
+.setDescription(message.content)
+.setFooter(`Message Recieved ${message.author.tag}`)
+await channel.send(embed);
+db.set(`support_${message.author.id}`, active);
+db.set(`supportChannel_${channel.id}`, message.author.id);
+return;
+}
+let support = await db.fetch(`supportChannel_${message.channel.id}`);
+if(support){
+support = await db.fetch(`support_${support}`);
+let supportuser = client.users.cache.get(support.targetID);
+if(message.content.startsWith('?complete')){
+const coof = new Discord.MessageEmbed()
+.setColor('#36393e')
+.setAuthor(`Hey, ${supportuser.tag}`, supportuser.displayAvatarURL())
+.setFooter(`Ticket Closed --- Dmar`)
+.setDescription(`Your Ticket Has Been Marked As Complete. If You With To Reopen This, OR Create a new one, Please Send Message To The Bot`)
+supportuser.send(coof);
+message.channel.delete()
+db.delete(`support_${support.targetID}`);
+}   
+client.users.cache.get(support.targetID).send(`**[${message.author.username}]:** ${message.content}`);
+
+}
+});

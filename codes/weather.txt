@@ -1,0 +1,28 @@
+//البكجات:-
+//1- requ
+
+
+client.on("message", async message => {
+  const request = require("request");
+
+  let prefix = "#";
+  var args = message.content.split(/[ ]+/);
+  var loc = args[1];
+
+if (message.content.startsWith(prefix + "weather")) {
+    if (!loc) return message.reply("Usage: `#weather <capita|countryl>`");
+    request({json: true, url: "http://api.weatherapi.com/v1/current.json?key=f7d7cad88f4549dbbd4141628202504&q=" + loc}, (err, res, json) => {
+if (!json.location){message.reply("I can't find this location!");} 
+else {
+  
+let embed = new Discord.RichEmbed()
+            .setTitle(`Weather for ${json.location.name}`)
+            .setDescription(`🗺️ Location: **${json.location.country} / ${json.location.name}**\n🌡️ Temperature: **${json.current.temp_c}°C** / **${json.current.temp_f}°F**\n💨 Wind: **${json.current.wind_kph}Km/h** | **${json.current.wind_mph}mph**\n😓 Humidity: **${json.current.humidity}%**\n📰 Condition: **${json.current.condition.text}**`)
+            .setThumbnail("https:" + json.current.condition.icon)
+            .setFooter(`Last Update at: ${json.current.last_updated} | Request by: ${message.author.tag}`)
+            .setColor("#66ccff");
+   message.channel.send(embed);
+
+}});
+  
+}});

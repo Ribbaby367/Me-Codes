@@ -1,0 +1,17 @@
+client.on('message', Message => {
+if(Message.author.bot) return undefined;
+if(Message.content.startsWith(prefix + 'kick') || Message.content.startsWith('كيك')){
+var args = Message.content.split(" ");
+var men = Message.mentions.members.first() || Message.guild.members.get(args[1]);
+var embed1 = new Discord.RichEmbed()
+.setTitle('Command: kick')
+.setDescription(`kicks a member.`)
+.addField('Usage:', `${prefix}kick [user] [reason]`)
+.addField('Examples:', `#kick <@${Message.author.id}> \n #kick <@${Message.author.id}> spamming`)
+if(!men) return Message.channel.send(embed1)
+let reason = Message.content.split(" ").slice(1);
+if(!men.bannable) return Message.channel.send(`**You Can't Ban **`)
+men.kick(reason);
+Message.channel.send(`**✅ Done Kick Member ${men}**`)
+}
+})

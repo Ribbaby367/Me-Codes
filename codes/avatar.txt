@@ -1,0 +1,19 @@
+client.on("message", async message => {
+  let prefix = "#";
+  if (message.content.startsWith(prefix + "avatar")) {
+  try {
+    const Discord = require("discord.js");
+    let user = message.mentions.members.first() || message.member;
+let color = user.displayHexColor;
+if (color == '#000000') color = user.hoistRole.hexColor;
+    let AvatarEmbed = new Discord.RichEmbed()
+.setTitle("Avatar for " + user.user.username)
+.addField('Link as', `[png](https://cdn.discordapp.com/avatars/${user.user.id}/${user.user.avatar}.png?size=2048) | [jpg](https://cdn.discordapp.com/avatars/${user.user.id}/${user.user.avatar}.jpg?size=2048) | [webp](https://cdn.discordapp.com/avatars/${user.user.id}/${user.user.avatar}.webp?size=2048)`, true).setColor(color)
+.setFooter(`Request By: ${message.author.tag}`, message.author.displayAvatarURL)
+.setImage(user.user.displayAvatarURL);
+    message.channel.send(AvatarEmbed);
+  } catch (err) {
+    message.channel.send("There was an error!\n" + err).catch();
+  }
+
+}});

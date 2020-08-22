@@ -1,0 +1,101 @@
+client.on("message", message => {
+	let CH = client.guilds.get("608411469586890940").emojis.find(r => r.name === "check");	  
+	var args = message.content.split(' ').slice(1); 
+	var msg = message.content.toLowerCase(); 
+	if( !message.guild ) return;
+ let roleremove = new Discord.RichEmbed()
+  .setColor('#42A9C9')
+  .setDescription(`**Example : 
+\`\`\`yaml
+-roleremove @mention <RoleName> : To Remove A role to one Member Only.
+-roleremove all <RoleName> : To Remove A role to all.
+-roleremove bots <RoleName> : To Remove A role to all Bots Only.
+-roleremove humans <RoleName> : To Remove A role to all Humans Only.\`\`\`**`)
+  let roleadd = new Discord.RichEmbed()
+   .setColor('BLACK')  
+   setDescription(`**Example :
+\`\`\`yaml
+-role @mention <RoleName> : To Give A role to one Member Only.
+-role all <RoleName> : To Give A role to all.
+-role bots <RoleName> : To Give A role to all Bots Only.
+-role humans <RoleName> : To Give A role to all Humans Only.\`\`\`**`)
+	if(!msg.startsWith('1role')) return;
+  if(blacklisted.includes(message.author.id)) return message.channel.send("You are blacklisted")
+  if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
+  if(!message.guild.member(client.user).hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But I Dont Have Permission** `MANAGE_GUILD`' );
+	if( msg.toLowerCase().startsWith( prefix + 'roleremove' ) ){  
+    if(blacklisted.includes(message.author.id)) return message.channel.send("You are blacklisted")
+		if( !args[0] ) return message.channel.send(`:rolling_eyes: - I can't find this member`);
+		if( !args[1] ) return message.channel.send(`:rolling_eyes: - I can't find this member`);
+		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
+		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
+		if( !role1 ) return message.channel.send(`:rolling_eyes: - I can't find this member`);
+    if( message.mentions.members.first() ){
+			message.mentions.members.first().removeRole( role1 );
+      const e = new Discord.RichEmbed()
+             .setDescription(`${CH} Change Role For ${args[0]} , -${role1.name}`)
+             .setFooter('Requested By : '+message.author.username,message.author.avatarURL)
+             .setColor('#42A9C9')
+              message.channel.send(e)
+		}
+		if( args[0].toLowerCase() == "all" ){
+      const e1 = new Discord.RichEmbed()
+           .setDescription(`${CH} Change Role For All , -${role1.name}`)
+           .setFooter('Requested By : '+message.author.username,message.author.avatarURL)
+           .setColor('#42A9C9')
+			message.guild.members.forEach(m=>m.removeRole( role1 ))
+			return	message.channel.send(e1)
+		} else if( args[0].toLowerCase() == "bots" ){
+      const e2 = new Discord.RichEmbed()
+           .setDescription(`${CH} Change Role For Bots , -${role1.name}`)
+           .setFooter('Requested By : '+message.author.username,message.author.avatarURL)
+           .setColor('#42A9C9')
+			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
+   
+			return	message.channel.send(e2)
+		} else if( args[0].toLowerCase() == "humans" ){
+      const e3 = new Discord.RichEmbed() 
+           .setDescription(`${CH} Change Role For Humans  , -${role1.name}`)
+           .setFooter('Requested By : '+message.author.username,message.author.avatarURL)
+           .setColor('#42A9C9')
+			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
+			return	message.channel.send(e3)
+    }
+	} else {
+		if( !args[0] ) return message.channel.send(`:rolling_eyes: - I can't find this member`);
+		if( !args[1] ) return message.channel.send(`:rolling_eyes: - I can't find this member`);
+		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
+		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
+		if( !role1 ) return message.channel.send(`:rolling_eyes: - I can't find this member`);
+    if( message.mentions.members.first() ){
+			message.mentions.members.first().addRole( role1 );
+     const e = new Discord.RichEmbed()
+           .setDescription(`${CH} Change Role For ${args[0]} , +${role1.name}`)
+           .setFooter('Requested By : '+message.author.username,message.author.avatarURL)
+           .setColor('#42A9C9')
+            message.channel.send(e)
+    }
+      if( args[0].toLowerCase() == "all" ){
+       const e1 = new Discord.RichEmbed()
+           .setDescription(`${CH} Change Role For All , +${role1.name}`)
+           .setFooter('Requested By : '+message.author.username,message.author.avatarURL)
+           .setColor('#42A9C9')
+			message.guild.members.forEach(m=>m.addRole( role1 ))
+			return	message.channel.send(e1)
+		} else if( args[0].toLowerCase() == "bots" ){
+      const e2 = new Discord.RichEmbed()
+           .setDescription(`${CH} Change Role For Bots , +${role1.name}`)
+           .setFooter('Requested By : '+message.author.username,message.author.avatarURL)
+           .setColor('#42A9C9')
+			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
+			return	message.channel.send(e2)
+		} else if( args[0].toLowerCase() == "humans" ){
+       const e3 = new Discord.RichEmbed()
+           .setDescription(`${CH} Change Role For Humans , +${role1.name}`)
+           .setFooter('Requested By : '+message.author.username,message.author.avatarURL)
+           .setColor('#42A9C9')
+			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
+			return	message.channel.send(e3)
+		} 
+	} 
+});

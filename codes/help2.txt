@@ -1,0 +1,10 @@
+ 	client.on('message', message => {s
+    if (message.author.bot) return;
+    if (message.content === prefix + "help") {
+        if (message.channel.id !== 'ID') return message.reply(`** No **`)
+	if(!message.channel.guild) return message.reply(' ');
+ message.channel.sendMessage(``);
+ 
+       
+    }
+}) 

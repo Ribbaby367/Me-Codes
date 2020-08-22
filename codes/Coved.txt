@@ -1,0 +1,41 @@
+//البكجات
+//request
+
+client.on("message", async message => {
+  let prefix = "#";
+  const request = require("request");
+
+  let args = message.content.split(/[ ]+/);
+  let word = args.slice(1).join(" ");
+  if (message.content.startsWith(prefix + "corona")) {
+    try {
+      if (!word)
+        return message.reply(
+          "Usage: **-corona <country>**\nEx: `-corona egypt`"
+        );
+
+      request(
+        {
+          json: true,
+          url: "https://corona.lmao.ninja/v2/countries/" + word
+        },
+        (err, res, json) => {
+          if (err) {
+            message.reply("There was an error!");
+          } else {
+            let embed = new Discord.RichEmbed()
+              .setTitle(`Corona In ${json.country}`)
+              .setDescription(
+                `**Total Cases: **${json.cases}\n**Total Deaths: **${json.deaths}\n**Total Recoverd: **${json.recovered}\n**Today Cases: **${json.todayCases}\n**Today Deaths: **${json.todayDeaths}`
+              )
+              .setThumbnail(json.countryInfo.flag)
+              .setColor("#e32a19");
+            message.channel.send(embed);
+          }
+        }
+      );
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});

@@ -1,0 +1,56 @@
+//البكجات:-
+//1- speakingurl
+//2- request
+
+
+
+
+
+client.on("message", async message => {
+ const getSlug = require("speakingurl").createSlug(options);
+  const request = require("request");
+  let prefix = "#";
+  var options = {
+    maintainCase: true,
+    separator: "%20"
+  };
+
+
+  let args = message.content.split(/[ ]+/);
+  let word = args.slice(1).join(" ");
+
+  if (message.content.startsWith(prefix + "lyrics")) {
+    try {
+      if (!word)
+        return message.reply("You need to give a song name to search!");
+
+      let slug = await getSlug(word);
+
+      request(
+        {
+          json: true,
+          url: "https://some-random-api.ml/lyrics/?title=" + slug
+        },
+        (err, res, json) => {
+          if (!json.lyrics)
+            return message.reply(
+              "I couldn't find anything for your search term!"
+            );
+
+          if (json.lyrics.length > 2048)
+            return message.reply(
+              "Discord didn't let me send that big of a message!"
+            );
+
+          let embed = new Discord.RichEmbed()
+            .setTitle(json.title)
+            .setDescription(json.lyrics)
+            .setAuthor(json.author);
+          message.channel.send(embed);
+        }
+      );
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});

@@ -1,0 +1,140 @@
+const buy = JSON.parse(fs.readFileSync('./buy.json' , 'utf8'));
+client.on('message',message =>{
+  if(message.content.startsWith(prefix + 'buy role')) {
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  let args = message.content.split(" ").slice(2).join(" ");
+  if(!args) return message.channel.send(`🙄 Please Type the role Name/ID`);
+  let role = message.guild.roles.find('name',args)||message.guild.roles.find('id',args);
+  if(!role) return message.channel.send(`🙄 I Can't find this role`);
+  buy[message.guild.id].role = role.id
+  fs.writeFile("./buy.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  message.channel.send(new Discord.RichEmbed()
+  .setColor('#35393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
+  .setAuthor('Change settings',message.guild.iconURL)
+  .addField(`**Role Now**`,`**\`\`\`${role.name}\`\`\`**`,true)
+  )
+  }
+  if(message.content.startsWith(prefix+'buy price')) {
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  let args = message.content.split(" ").slice(2).join(" ");
+  if(!args) return message.channel.send(`🙄 Please Type the role Price`)
+  if(isNaN(parseInt(args))) return message.channel.send(`🙄 The price is wrong!`)
+  if(parseInt(args)<0) return message.channel.send(`🙄 The price is wrong!`)
+  buy[message.guild.id].price = args
+  fs.writeFile("./buy.json", JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  message.channel.send(new Discord.RichEmbed()
+  .setColor('#36393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
+  .setAuthor('Change settings',message.guild.iconURL)
+  .addField(`**Role Price Now**`,`**\`\`\`${args}$\`\`\`**`,true)
+  )
+  }
+  if(message.content.startsWith(prefix+'buy tran')) {
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  let user = message.mentions.members.first() || message.guild.members.get(message.content.split(" ")[2])
+  buy[message.guild.id].transfer = user.id
+  fs.writeFile("./buy.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  message.channel.send(new Discord.RichEmbed()
+  .setColor('#36393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
+  .setAuthor('Change settings',message.guild.iconURL)
+  .addField(`**Trans To**`,`**${user}**`,true)
+  )
+  }
+  if(message.content.startsWith(prefix+'buy on')) {
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  buy[message.guild.id].onoff = 'On'
+  fs.writeFile("./buy.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  let on1 = new Discord.RichEmbed()
+  .setColor('#36393e')
+  .setDescription(`**\`\`\`The BuyRole Has Been Enabled\`\`\`**`)
+  message.channel.send(on1)
+  }
+  if(message.content.startsWith(prefix+'buy off')) {
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  buy[message.guild.id].onoff = 'Off'
+  fs.writeFile("./buy.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  let off1 = new Discord.RichEmbed()
+  .setColor('#36393e')
+  .setDescription(`**\`\`\`The BuyRole has been disabled\`\`\`**`)
+  message.channel.send(off1)
+  }
+  if(message == prefix + 'buy VIP') {
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  let pp = buy[message.guild.id].price
+  let brole = message.guild.roles.find('id',buy[message.guild.id].role)
+  let btrans = buy[message.guild.id].transfer
+  if(!brole) return message.channel.send(`🙁 Please setup the command again`)
+  if(!message.guild.members.find('id',buy[message.guild.id].transfer))return message.channel.send(`🙁 Please setup the command again`)
+  if(buy[message.guild.id].onoff === 'Off') return message.channel.send(`🙁 - the command has been disabled\nplease type __${prefix}buy on__ to turn it on`)
+  if(message.author.id === buy[message.guild.id].transfer) return message.channel.send(`you can't buy a rank because you can't transfer credits to your self 🤗`)
+  if(message.member.roles.find(r=>r.id == buy[message.guild.id].role)) return message.reply(`**You already have the rank \`${brole.name}\` ✅**`);
+  message.channel.send(new Discord.RichEmbed()
+  .setColor('#36393e')
+  .addField(`**Command:**`, `**\`#credits ${message.guild.members.get(buy[message.guild.id].transfer)} ${buy[message.guild.id].price}\`**`)).then(msgs=>{
+  let lPrice = Math.floor(pp-(pp*(5/100)));
+  let filter = response => response.author.id == "282859044593598464" && response.mentions._content.includes(`:moneybag: | ${message.author.username}, has transferred \`$${lPrice}\` to <@${buy[message.guild.id].transfer}>`);
+  message.channel.awaitMessages(filter, { maxMatches: 1, time: 240000, errors: ['time'] })
+  .then( collected =>{
+  let log = message.guild.channels.find("name", `❖・log・vip`);
+  let gg = new Discord.RichEmbed()
+  .setColor('#36393e')
+  .setThumbnail(`https://cdn.discordapp.com/attachments/584630360017469461/588151955063570433/582096911448801288.png`)
+  .setAuthor(`New purchase`,`https://cdn.discordapp.com/attachments/584630360017469461/584687464334098432/581239984376381455.gif`)
+  .addField(`**User :**`,`\`\`\`${message.author.username}\`\`\``,true)
+  .addField(`**Role :**`,`\`\`\`${brole.name}\`\`\``,true)
+  .addField(`**💰 Rank Price :**`,`\`\`\`${buy[message.guild.id].price}$\`\`\``,true)
+  .addField(`**💳 Transferd To :**`,`<@${buy[message.guild.id].transfer}>`,true)
+  .setTimestamp();
+  if(log) log.send(gg)
+  const done = new Discord.RichEmbed()
+  .setColor('#36393e')
+  .setDescription(`**\`\`\`Done Buy Role ${brole.name}\`\`\`**`)
+  .setTimestamp();
+  message.member.addRole(brole)
+  message.channel.send(done);
+ var mmm = setTimeout(() => {
+message.member.removeRole(brole)
+}, 2592000000)
+  message.author.send(new Discord.RichEmbed()
+  .setColor("#36393e")
+  .setTitle('Role VIP')
+  .setDescription(`\`\`\`RANK NAME: ${brole.name} RANK PRICE: ${buy[message.guild.id].price}$ \`\`\``)
+  .setFooter(message.guild.name,message.guild.iconURL))
+})
+})
+}
+});

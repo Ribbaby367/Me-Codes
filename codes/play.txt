@@ -1,0 +1,37 @@
+client.on('message', async message => {
+if(message.author.bot) return undefined;
+if(message.content.startsWith(prefix + 'play')){
+let args = message.content.split(' ').slice(1);
+if(!message.member.voiceChannel) return message.channel.send(`**:x: | Please Connect To A Voice Channel.**`);
+if(message.guild.me.voiceChannel) return message.channel.send(`**Soory, The Bot is Aleardy Connected To The Guild**`);
+if(!args[0]) return message.channel.send(`**Sorry, Please input a url Following The Command.**`);
+let validate = await ytdl.validateURL(args[0]);
+if(!validate) return message.channel.send(`**Sorry, Please input a url Following The Command.**`);
+let info = await ytdl.getInfo(args[0]);
+const serverQueue = active.get(message.guild.id);
+
+const song = {
+id: validate.id,
+title: validate.title,
+msDur: ms,
+url: `https://www.youtube.com/watch?v=${validate.id}`
+};
+if (!serverQueue) {
+const queueConstruct = {
+textChannel: message.channel,
+voiceChannel: message.member.voiceChannel,
+connection: null,
+songs: [],
+volume: 100,
+requester: message.author,
+playing: true,
+repeating: false
+};
+active.set(message.guild.id, queueConstruct);
+queueConstruct.songs.push(song);
+let connection = await message.member.voiceChannel.join();
+let dispatcher = await connection.playStream(ytdl(args[0], { filter: 'audioonly' }));
+message.channel.send(`**Now Playing ${info.title} [${info.dur}]**`)
+}
+}
+})

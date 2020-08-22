@@ -1,0 +1,6 @@
+client.on ("guildMemberAdd", member => {
+  
+   var role = member.guild.roles.find ("name", "اسم رتب");
+   member.addRole(role);
+  
+})

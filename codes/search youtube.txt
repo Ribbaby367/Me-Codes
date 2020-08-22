@@ -1,0 +1,36 @@
+//البكجات:-
+//1- ytsearcher
+
+
+client.on("message", async message => {
+  const { YTSearcher } = require("ytsearcher");
+  const searcher = new YTSearcher("AIzaSyB2r1MembNCs_Cghu1NtSAmim-t9MPGkug");
+  let prefix = "#";
+  const request = require("request");
+  let args = message.content.split(/[ ]+/);
+  let word = args.slice(1).join(" ");
+
+  if (message.content.startsWith(prefix + "yt")) {
+    try {
+      if (!word) return message.reply("You need to give something to search!");
+
+      let msg = await message.channel.send("Searching...");
+
+      searcher.search(word).then(info => {
+        if (!info.first)
+          return message.reply(
+            "I couldn't find anything on Youtube with your query!"
+          );
+
+        let embed = new Discord.RichEmbed()
+          .setTitle(info.first.title)
+          .setDescription(info.first.url)
+          .setColor("#eeeeee");
+
+        msg.edit(embed);
+      });
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});

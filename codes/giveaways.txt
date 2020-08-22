@@ -1,0 +1,96 @@
+settings = {
+prefix: "",
+token: ""
+};
+const { GiveawaysManager } = require("discord-giveaways");
+const manager = new GiveawaysManager(client, {
+storage: "./giveaways.json",
+updateCountdownEvery: 5000,
+default: {
+botsCanWin: false,
+exemptPermissions: [],
+embedColor: "#36393e",
+reaction: "🎉"
+}
+});
+client.giveawaysManager = manager;
+client.on("ready", () => {
+console.log("I'm ready !");
+});
+
+client.on("message", (message) => {
+const ms = require("ms");
+const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
+if(command === "start"){
+if (!message.member.hasPermission("MANAGE_GUILD"))  return message.channel.send(`**Your Not Have Perm \`MANAGE_GUILD\`**`);
+message.delete();
+let time = args[0];
+let winners = args[1];
+let prize = args.slice(2).join(" ")
+let embedstarts = new Discord.RichEmbed()
+.setDescription(`> \`\`\`Usage: ${settings.prefix}start [Time] [Winners] [Prize]\`\`\``)
+.addField('Example:', `> **${settings.prefix}start 1m 1 Test**`)
+if (!time || !winners || !prize) return message.reply(embedstarts)
+if (isNaN(winners)) return message.reply(`Winner Need To Be Number`)
+if (!time) return message.reply(`1s , 1m , 1h , 1w , 1mo`)
+
+client.giveawaysManager.start(message.channel, {
+time: ms(args[0]),
+prize: args.slice(2).join(" "),
+winnerCount: parseInt(args[1]),
+hostedBy: message.author ,
+messages: {
+giveaway: "🎉🎉**GIVEAWAY** 🎉🎉",
+giveawayEnded: "🎉🎉 **GIVEAWAY ENDED** 🎉🎉",
+timeRemaining: "Time remaining: **{duration}**!",
+inviteToParticipate: "React with 🎉 to enter!",
+winMessage: `> **Congratulations, {winners} You won \`{prize}\`** ${message.url}`,
+embedFooter: "Giveaways",
+noWinner: "Could not determine a winner!",
+hostedBy: "**Hosted by: {user}**",
+winners: "winner(s)",
+endedAt: "Ended at",
+units: {
+seconds: "seconds",
+minutes: "minutes",
+hours: "hours",
+days: "days",
+pluralS: true 
+}
+}
+});
+}
+});
+
+client.on("message", (message) => {
+const ms = require("ms"); 
+const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
+if(command === "reroll"){
+if (!message.member.hasPermission("MANAGE_GUILD"))  return message.channel.send(`**Your Not Have Perm \`MANAGE_GUILD\`**`);
+message.delete();
+let messageID = args[0];
+if(!messageID) messageID = "**None**";
+client.giveawaysManager.reroll(messageID).then(() => {
+message.channel.send(`> **Success Giveaway Rerolled.**`);
+}).catch((err) => {
+message.channel.send("No Giveaway Found For "+messageID+", Please Check And Try Again");
+});
+}
+});
+client.on("message", (message) => {
+const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
+if(command === "end"){
+if (!message.member.hasPermission("MANAGE_GUILD"))  return message.channel.send(`**Your Not Have Perm \`MANAGE_GUILD\`**`);
+message.delete();
+let messageID = args[0];
+client.giveawaysManager.delete(messageID).then(() => {
+message.channel.send(`> **Success Giveaway Ended.**`);
+}).catch((err) => {
+if(!messageID) messageID = "**None**";
+message.channel.send("No Giveaway Found For "+messageID+", Please Check And Try Again");
+});
+}
+});

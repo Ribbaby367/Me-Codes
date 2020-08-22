@@ -1,0 +1,26 @@
+client.on("message", async message => {
+  let prefix = "#";
+  const request = require("request");
+
+  if (message.content.startsWith(prefix + "meme")) {
+    try {
+      request(
+        { json: true, url: "https://meme-api.herokuapp.com/gimme/dankmemes" },
+        (err, res, json) => {
+          if (err) {
+            message.reply("There was an error!");
+          } else {
+            message.channel.send(new Discord.Attachment(json.url));
+          }
+        }
+      );
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});
+
+
+
+///البكجات:-
+/// request23غ

@@ -1,0 +1,26 @@
+//البكجات:-
+//1- request
+
+
+
+client.on("message", async message => {
+  let prefix = "#";
+  const request = require("request");
+  const { Attachment } = require("discord.js");
+  if (message.content.startsWith(prefix + "cat")) {
+    try {
+      request(
+        { json: true, url: "http://aws.random.cat/meow" },
+        (err, res, json) => {
+          if (err) {
+            message.reply("There was an error!");
+          } else {
+            message.channel.send(new Attachment(json.file));
+          }
+        }
+      );
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});

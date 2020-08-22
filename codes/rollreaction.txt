@@ -1,0 +1,70 @@
+client.on('raw', payload => {
+    if(payload.t === 'MESSAGE_REACTION_ADD') {
+        if(payload.d.emoji.name === '⚙️')
+        {
+            if(payload.d.message_id === 'ID رسائل') {
+                let channel = client.channels.get(payload.d.channel_id)
+                if(channel.messages.has(payload.d.message_id)) {
+                    return;
+            
+                } else { 
+                    channel.fetchMessage(payload.d.message_id)
+                    .then(msg => {
+                        let reaction = msg.reactions.get("⚙️");
+                        let user = client.users.get(payload.d.user_id);
+                        client.emit('messageReactionAdd', reaction, user);
+                    })
+                }
+            }
+        } else if(payload.d.emoji.name === "📝") {
+            let channel = client.channels.get(payload.d.channel_id);
+            if(channel.messages.has(payload.d.message_id)) {
+                return;
+            }
+            else {
+                channel.fetchMessage(payload.d.message_id)
+                .then(msg => {
+                    let reaction = msg.reactions.get("📝");
+                    let user = client.users.get(payload.d.user_id);
+                    client.emit('messageReactionAdd', reaction, user);
+                })
+            }
+        } else if(payload.d.emoji.name === "📚") {
+            let channel = client.channels.get(payload.d.channel_id);
+            if(channel.messages.has(payload.d.message_id)) {
+                return;
+            }
+            else {
+                channel.fetchMessage(payload.d.message_id)
+                .then(msg => {
+                    let reaction = msg.reactions.get("📚");
+                    let user = client.users.get(payload.d.user_id);
+                    client.emit('messageReactionAdd', reaction, user);
+                }) 
+            }
+        }  
+    }
+}) 
+
+client.on('messageReactionAdd', (reaction, user) => {
+    if(reaction.emoji.name === '⚙️') { 
+       
+      const member = reaction.message.guild.members.get(user.id)
+      if (member.id !== client.user.id) {
+  let role = reaction.message.guild.roles.find(r => r.name === "Codes")
+member.addRole(role.id)
+      }
+      } else if(reaction.emoji.name === '📝') {
+      const member = reaction.message.guild.members.get(user.id)
+    if(member.id !== client.user.id) {
+  let rolee = reaction.message.guild.roles.find(r => r.name === "Education") 
+member.addRole(rolee.id)
+   }
+  } else if(reaction.emoji.name === '📚') {
+   const member = reaction.message.guild.members.get(user.id)
+   if(member.id !== client.user.id) {
+     let roleee = reaction.message.guild.roles.find(r => r.name === "Tutorials")
+member.addRole(roleee.id)
+   }
+  }
+})

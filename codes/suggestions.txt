@@ -1,0 +1,41 @@
+let sugg = JSON.parse(fs.readFileSync("./suggestions.json", 'utf8'));
+client.on('message', async message => {
+if(message['author'].bot) return undefined;
+if(message['content']['startsWith'](prefix + 'set-sug')){
+var args1 = message['content'].split(" ").slice(1).join(" ");    
+let channel = message['guild'].channels.find(ch => ch.name === `${args1}`)
+if(!args1) return message.channel.send(`> **Write Name Channel**`);
+if(!channel) return message.channel.send(`> **Not Found This Name Channel**`);
+message.channel.send(`> **Done Selected Channel Suggestions**`);
+sugg[message.guild.id] = {
+channel: args1,    
+}
+fs.writeFile("./suggestions.json", JSON.stringify(sugg), (err) => {
+if(err)
+console.error(err);
+})
+}
+})
+
+client.on('message', async message => {
+if(message['author'].bot) return undefined;
+if(message['content']['startsWith'](prefix + 'suggestion') || message['content']['startsWith'](prefix + 'sug') || message['content']['startsWith'](prefix + 'اقتراح')){
+let sugg11 = message.content.split(" ").slice(1).join(" ");
+if(!sugg11) return message.channel.send(`> **Write Suggestion**`);
+let room = message.guild.channels.find(ro => ro.name === `${sugg[message.guild.id].channel}`);
+if(!room) return message.channel.send(`> **Not Found Room**`);
+let send21 = new Discord.RichEmbed()
+.setAuthor(`${message.author.tag} (ID : ${message.author.id})`, message.author.avatarURL)
+.setTitle(`Suggestion:`)
+.setDescription(`> ${sugg11}`)
+.setColor('')
+.setThumbnail(message.author.avatarURL)
+.setTimestamp()
+.setFooter(`Version: 1.0.0`)
+room.send(send21)
+fs.writeFile("./suggestions.json", JSON.stringify(sugg), (err) => {
+if(err)
+console.error(err);
+})
+}
+})

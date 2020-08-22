@@ -1,0 +1,55 @@
+client.on("message", async message => {
+  let prefix = "#";
+
+  const request = require("request");
+  const { to24Hours, to12Hours } = require("convert-string-time");
+  const getTimeDiffAndTimeZone = require("city-country-timezone");
+
+  let args = message.content.split(/[ ]+/);
+  let word = args.slice(1).join(" ");
+  if (message.content.startsWith(prefix + "time")) {
+    try {
+      const { timezone } = getTimeDiffAndTimeZone(word);
+      if (!timezone)
+        return message.reply(
+          "I can't find this Location, Try again with Country name or Capital of a country"
+        );
+      request(
+        {
+          json: true,
+          url:
+            "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=" +
+            timezone
+        },
+        (err, res, json) => {
+          if (err) {
+            message.reply("There was an error!");
+          } else {
+            var TL = to12Hours(`${json.hours}:${json.minutes}`);
+            let embed = new Discord.RichEmbed()
+              .setTitle(`Time In ${json.timezone}`)
+              .setDescription(
+                `**Year: **${json.year}\n**Month: **${json.monthName} | ${json.month}\n**Day: **${json.day}\n**Day of a week: **${json.dayofweek} | ${json.dayofweekName}\n**Time: **Hours: ${json.hours} | Minutes: ${json.minutes} | Seconds: ${json.seconds}\n**Time By 12h: **${TL}`
+              )
+              .setThumbnail(
+                "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/230/clock-face-three-oclock_1f552.png"
+              )
+              .setColor("#e8ed5f");
+            message.channel.send(embed);
+          }
+        }
+      );
+    } catch (err) {
+      message.channel.send("There was an error!\n" + err).catch();
+    }
+  }
+});
+
+\*
+
+البكجات:-
+1- request
+2- convert-string-time
+3- city-country-timezone
+*\
+

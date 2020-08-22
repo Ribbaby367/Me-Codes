@@ -1,0 +1,49 @@
+//البكجات:-
+//1- speakingurl
+//2- iso-639-1
+//3- google-translate-open-api
+
+
+
+
+
+
+client.on("message", async message => {
+try {
+const translate = require("google-translate-open-api").default;
+const ISO = require("iso-639-1");
+const slug = require("speakingurl");
+  let prefix = "#";
+  if (message.content.startsWith(prefix + "tr")) {
+    
+let args = message.content.split(/[ ]+/);
+let lang = args[1];
+let text = args.slice(2).join(" ");
+var slugtr = slug(lang);
+var language = ISO.getName(slugtr);
+    if (!lang)return message.reply("Usage: `#translate <language code> [word]`\nEx: `#translate ar hello world`");
+    if (!text)return message.reply("Please Write Your word, and try again");
+    if (!language) return message.reply("Vaild Language Code");
+
+let loading = await message.channel.send("Translating Your message...").catch(err => message.channel.send(err));
+let result = await translate([text], {
+      tld: "com",
+      to: slugtr,
+      format: "text",
+      browers: true
+    });
+let data = result.data[0];
+
+    if (!data)return message.reply("i can't Translate Now, Please try again later");
+
+let embed = new Discord.RichEmbed()
+        .setTitle(`Translator`)
+        .setDescription(`language: **${language}**\nText: **${data}**`)
+        .setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Google_Translate_logo.svg/1200px-Google_Translate_logo.svg.png")
+        .setFooter("Powered by: Google Translate | Request By: " + message.author.tag)
+        .setColor("#66ccff");
+loading.edit(embed);
+
+}} catch (err) {
+    message.channel.send(" " + err).catch();}
+});

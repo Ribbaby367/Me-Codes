@@ -1,0 +1,16 @@
+client.on('message', Message => {
+if(Message.author.bot) return undefined;
+if(Message.content.startsWith(prefix + 'ban') || Message.content.startsWith('بان')){
+var args = Message.content.split(" ");
+var men = Message.mentions.members.first() || Message.guild.members.get(args[1]);
+var embed1 = new Discord.RichEmbed()
+.setTitle('Command: ban')
+.setDescription(`Bans a member.`)
+.addField('Usage:', `${prefix}ban [user] [reason]`)
+.addField('Examples:', `#ban <@${Message.author.id}> \n #ban <@${Message.author.id}> spamming`)
+if(!men) return Message.channel.send(embed1)
+let reason = Message.content.split(" ").slice(2).join(" ");
+men.ban(reason);
+Message.channel.send(`**✅ Done Ban Member ${men}**`)
+}
+})
