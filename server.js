@@ -14,7 +14,7 @@ const botversion = require("./package.json").version;
 const fs = require("fs");
 const ms = require("ms");
 const prefix = "#";
-const devs = ["541532350719459348", "99351862692544532", "644975690005086229"];
+const devs = ["541532350719459348", "697517724649390151"];
 client.login("");
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -8228,3 +8228,1902 @@ client.on("message", message => {
       .catch(err => message.channel.send(err.message));
   }
 });
+client.on("message", message => {
+  if(message.author.bot) return;
+  if(!message.content.startsWith(prefix)) return;
+  if(message.content.startsWith(prefix + "help-vip+")) {
+    if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+  
+  let embed = new Discord.RichEmbed()
+  .setColor("BLACK")
+  .setAuthor(`Me Codes VIP+ | V5.0.2`)
+  .setDescription(`** 
+قـائـمـه اولا : <:694579691209621654:697941185666351135> 
+
+قـائـمـه ثـانـيـا : <:694579689469247539:697941183611273217> 
+
+قـائـمـه ثـالـث : <:694579693063766126:697941183690833991>
+**`)
+message.channel.send(embed).then(async msg => {
+                    await msg.react("🟢")
+                    await msg.react("🟠")
+                    await msg.react("🔴")
+  const a = msg.createReactionCollector((reaction, user) => reaction.emoji.name === "🟢" && user.id === message.author.id, {time: 86400000})
+  const d = msg.createReactionCollector((reaction, user) => reaction.emoji.name === "🟠" && user.id === message.author.id, {time: 86400000})
+  const s = msg.createReactionCollector((reaction, user) => reaction.emoji.name === "🔴" && user.id === message.author.id, {time: 86400000})
+          a.on('collect', async r => {
+              await r.remove(message.author)
+                        embed.setDescription(`**
+ #codes translator :  \` كود مترجم \`
+ #codes weather :  \` كود الطقس \`
+ #codes avatar :  \` كود صور البروفايل مطور \`
+ #codes lyrics :  \`  عرض كلمات اغانى \`
+ #codes clear :  \` مسح شات برو بوت \`
+ #codes Cat pictures :  \` يطلع صور حيوانات كل شوى \`
+ #codes Search for pictures :  \` كود بحث عن صور متحركه \`
+ #codes welcome :  \` كود ترحيب \`
+ #codes profile :  \` كود بروفايل \`
+ #codes log :  \` كود لوق بجيسون \`
+ #codes prove :  \` كود يطلع صور ثبت نفسك جاهزة \`
+ #codes antibots :  \` كود حماية من بوتات \`
+ #codes antispreed :  \` كود منع نشر روبط بجيسون \`
+ #codes give role :  \` كود رول برو بوت \`
+ #codes setprefix :  \` كود تغير برفكس \`
+ #codes suggestions :  \`كود قتراحات \`
+ #codes ban :  \` كود بان مطور \`
+ #codes kick :  \` كود طرد مطور \`
+ #codes submit :  \` كود تقديم مطور \`
+ #codes giveaways :  \` كود قيف اوى \` **`)
+                        embed.setAuthor(`${client.user.tag}`)
+                        msg.edit(embed)
+                    })
+                    d.on('collect', async r => {
+                        await r.remove(message.author);
+                        embed.setDescription(`**
+ #codes id :  \` كود اى دى برو بوت \`
+ #codes ticket :  \` كود ت	كيت فى الخاص \`
+ #codes xp :  \` كود اكس بى \`
+ #codes help2 :  \` كود الهلب بشات معين \` 
+ #codes buy :  \` كود شراء رتب بجيسون + لوق \`
+ #codes rollreaction :  \` كود رول ركشن \`
+ #codes play :  \` كود اغانى مطور \`
+ #codes search youtube :  \` كود بحث فى يوتيوب \`
+ #codes rep :  \` كود ريب شبه برو بوت \`
+ #codes moji roll :  \` عطاء عضو رتب بركشن \` 
+ #codes bc :  \` كود برودكاست \`
+ #codes automatic roll :  \` رتب تلقائى لم عضو يدخل \`
+ #codes topinvites :  \` توب عداد الدعوت \`
+ #codes mutes :  \` كود ميوت بجيسون \`
+ #codes bans :  \` كود قائمه باند فى سيرفرم \`
+ #codes starch Infite :  \` نشاء ربط دعوه \`
+ #codes Coved : \` حصائيات فيروس كورونا \` 
+ #codes Date and time : \` معرفة الوقت + التاريخ \`
+ #codes sans : \` كود سانس \`
+ #codes minesweeper : \` لعبة minesweeper \`
+**`) 
+                        embed.setAuthor(`${client.user.tag}`)
+                        msg.edit(embed)
+                    })
+  s.on('collect', async r => {
+    await r.remove(message.author)
+    embed.setAuthor(`${client.user.tag}`)
+    embed.setDescription(`<a:575205174637887488:594174234134315028>  | ** جارى صنع الكود ** `)
+    msg.edit(embed) 
+})                
+})
+  }
+})
+
+
+
+client.on('message', message => {
+if (message.content === '#codes translator') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/translator.txt');
+const attachment = new Discord.Attachment(buffer, 'Translator.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes weather') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/weather.txt');
+const attachment = new Discord.Attachment(buffer, 'Weather.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes avatar') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/avatar.txt');
+const attachment = new Discord.Attachment(buffer, 'avatar.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes lyrics') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/lyrics.txt');
+const attachment = new Discord.Attachment(buffer, 'lyrics.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+client.on('message', message => {
+if (message.content === '#codes clear') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/clear.txt');
+const attachment = new Discord.Attachment(buffer, 'clear.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes cat pictures') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/Cat pictures.txt');
+const attachment = new Discord.Attachment(buffer, 'Cat pictures.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes Search for pictures') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/Search for pictures.txt');
+const attachment = new Discord.Attachment(buffer, 'Search for pictures.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes welcome') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/welcome.txt');
+const attachment = new Discord.Attachment(buffer, 'Welcome.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes profile') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/profile.txt');
+const attachment = new Discord.Attachment(buffer, 'Profile.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes log') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/log.txt');
+const attachment = new Discord.Attachment(buffer, 'log.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes prove') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/prove.txt');
+const attachment = new Discord.Attachment(buffer, 'Prove.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes antibots') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/antibots.txt');
+const attachment = new Discord.Attachment(buffer, 'Anti Bots.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes antispreed') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/antispreed.txt');
+const attachment = new Discord.Attachment(buffer, 'Anti Spreed.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes give role') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/give role.txt');
+const attachment = new Discord.Attachment(buffer, 'Give Role.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes setprefix') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/setprefix.txt');
+const attachment = new Discord.Attachment(buffer, 'Set Prefix.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes suggestions') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/suggestions.txt');
+const attachment = new Discord.Attachment(buffer, 'Suggestions.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes ban') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/ban.txt');
+const attachment = new Discord.Attachment(buffer, 'Ban.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes kick') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/kick.txt');
+const attachment = new Discord.Attachment(buffer, 'Kick.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes submit') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/submit.txt');
+const attachment = new Discord.Attachment(buffer, 'Submit.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes giveaways') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/giveaways.txt');
+const attachment = new Discord.Attachment(buffer, '.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes id') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/id.txt');
+const attachment = new Discord.Attachment(buffer, 'ID.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes ticket') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/ticket.txt');
+const attachment = new Discord.Attachment(buffer, 'Ticket.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes xp') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/xp.txt');
+const attachment = new Discord.Attachment(buffer, 'XP.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes help2') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/help2.txt');
+const attachment = new Discord.Attachment(buffer, 'help.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes buy') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/buy.txt');
+const attachment = new Discord.Attachment(buffer, 'Buy.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes rollreaction') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/rollreaction.txt');
+const attachment = new Discord.Attachment(buffer, 'Roll Reaction.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes play') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/play.txt');
+const attachment = new Discord.Attachment(buffer, 'play.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes search youtube') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/search youtube.txt');
+const attachment = new Discord.Attachment(buffer, 'Search YouTube.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes rep') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/rep.txt');
+const attachment = new Discord.Attachment(buffer, 'rep.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes moji roll') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/moji roll.txt');
+const attachment = new Discord.Attachment(buffer, 'Moji Roll.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes bc') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/bc.txt');
+const attachment = new Discord.Attachment(buffer, 'bc.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes automatic roll') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/automatic roll.txt');
+const attachment = new Discord.Attachment(buffer, 'Automatic roll.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes topinvites') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/topinvites.txt');
+const attachment = new Discord.Attachment(buffer, 'Top Invites.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes mutes') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/mutes.txt');
+const attachment = new Discord.Attachment(buffer, 'mutes.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes bans') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/bans.txt');
+const attachment = new Discord.Attachment(buffer, 'bans.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes starch Infite') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/Create an invitation link.txt');
+const attachment = new Discord.Attachment(buffer, 'Create an invitation link.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes bot information') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/bot information.txt');
+const attachment = new Discord.Attachment(buffer, 'Bot information.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes Coved') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/Coved.txt');
+const attachment = new Discord.Attachment(buffer, 'Coved.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes photo memes') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/photo memes.txt');
+const attachment = new Discord.Attachment(buffer, 'photo memes.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes Date and time') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/Date and time.txt');
+const attachment = new Discord.Attachment(buffer, 'Date and time.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});	
+
+
+
+
+const buy = JSON.parse(fs.readFileSync('./buy1.json' , 'utf8'));
+client.on('message',message =>{
+  if(message.content.startsWith(prefix + 'buy 11111111111')) {
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  let args = message.content.split(" ").slice(2).join(" ");
+  if(!args) return message.channel.send(`🙄 Please Type the role Name/ID`);
+  let role = message.guild.roles.find('name',args)||message.guild.roles.find('id',args);
+  if(!role) return message.channel.send(`🙄 I Can't find this role`);
+  buy[message.guild.id].role = role.id
+  fs.writeFile("./buy1.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  message.channel.send(new Discord.RichEmbed()
+  .setColor('#35393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
+  .setAuthor('Change settings',message.guild.iconURL)
+  .addField(`**Role Now**`,`**\`\`\`${role.name}\`\`\`**`,true)
+  )
+  }
+  if(message.content.startsWith(prefix+'buy aaaa1')) {
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'//
+  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  let args = message.content.split(" ").slice(2).join(" ");
+  if(!args) return message.channel.send(`🙄 Please Type the role Price`)
+  if(isNaN(parseInt(args))) return message.channel.send(`🙄 The price is wrong!`)
+  if(parseInt(args)<0) return message.channel.send(`🙄 The price is wrong!`)
+  buy[message.guild.id].price = args
+  fs.writeFile("./buy1.json", JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  message.channel.send(new Discord.RichEmbed()
+  .setColor('#36393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
+  .setAuthor('Change settings',message.guild.iconURL)
+  .addField(`**Role Price Now**`,`**\`\`\`${args}$\`\`\`**`,true)
+  )
+  }
+  if(message.content.startsWith(prefix+'buy 1111111')) {
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  let user = message.mentions.members.first() || message.guild.members.get(message.content.split(" ")[2])
+  buy[message.guild.id].transfer = user.id
+  fs.writeFile("./buy1.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  message.channel.send(new Discord.RichEmbed()
+  .setColor('#36393e').setFooter(message.author.tag,message.author.avatarURL).setTimestamp()
+  .setAuthor('Change settings',message.guild.iconURL)
+  .addField(`**Trans To**`,`**${user}**`,true)
+  )
+  }
+  if(message.content.startsWith(prefix+'buy on')) {
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  buy[message.guild.id].onoff = 'On'
+  fs.writeFile("./buy1.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  let on1 = new Discord.RichEmbed()
+  .setColor('#36393e')
+  .setDescription(`**\`\`\`The BuyRole Has Been Enabled\`\`\`**`)
+  message.channel.send(on1)
+  }
+  if(message.content.startsWith(prefix+'buy off')) {
+  if(!message.member.hasPermission('MANAGE_GUILD')) return;
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  buy[message.guild.id].onoff = 'Off'
+  fs.writeFile("./buy1.json", JSON.stringify(buy), (err) => {if (err) console.error(err)})
+  let off1 = new Discord.RichEmbed()
+  .setColor('#36393e')
+  .setDescription(`**\`\`\`The BuyRole has been disabled\`\`\`**`)
+  message.channel.send(off1)
+  }
+  if(message == prefix + 'buy vip+') {
+  if(!buy[message.guild.id]) buy[message.guild.id] = {
+  role:'null',
+  price:'null',
+  transfer:'null',
+  onoff:'Off'
+  };fs.writeFile("./buy1.json",JSON.stringify(buy),(err)=>{if(err)console.error(err)})
+  let pp = buy[message.guild.id].price
+  let brole = message.guild.roles.find('id',buy[message.guild.id].role)
+  let btrans = buy[message.guild.id].transfer
+  if(!brole) return message.channel.send(`🙁 Please setup the command again`)
+  if(!message.guild.members.find('id',buy[message.guild.id].transfer))return message.channel.send(`🙁 Please setup the command again`)
+  if(buy[message.guild.id].onoff === 'Off') return message.channel.send(`🙁 - the command has been disabled\nplease type __${prefix}buy on__ to turn it on`)
+  if(message.author.id === buy[message.guild.id].transfer) return message.channel.send(`you can't buy a rank because you can't transfer credits to your self 🤗`)
+  if(message.member.roles.find(r=>r.id == buy[message.guild.id].role)) return message.reply(`**You already have the rank \`${brole.name}\` ✅**`);
+  message.channel.send(new Discord.RichEmbed()
+  .setColor('#36393e')
+  .addField(`**Command:**`, `**\`#credits ${message.guild.members.get(buy[message.guild.id].transfer)} ${buy[message.guild.id].price}\`**`)).then(msgs=>{
+  let lPrice = Math.floor(pp-(pp*(5/100)));
+  let filter = response => response.author.id == "567703512763334685" && response.mentions._content.includes(`:moneybag: | ${message.author.username}, has transferred \`$${lPrice}\` to <@${buy[message.guild.id].transfer}>`);
+  message.channel.awaitMessages(filter, { maxMatches: 1, time: 240000, errors: ['time'] })
+  .then( collected =>{
+  let log = message.guild.channels.find("name", `❖・log・vip2`);
+  let gg = new Discord.RichEmbed()
+  .setColor('#36393e')
+  .setThumbnail(`https://cdn.discordapp.com/attachments/584630360017469461/588151955063570433/582096911448801288.png`)
+  .setAuthor(`New purchase`,`https://cdn.discordapp.com/attachments/584630360017469461/584687464334098432/581239984376381455.gif`)
+  .addField(`**User :**`,`${message.author.id}، ${message.author}`,true)
+  .addField(`**Role :**`,`\`\`\`${brole.name}\`\`\``,true)
+  .addField(`**💰 Rank Price :**`,`\`\`\`${buy[message.guild.id].price}$\`\`\``,true)
+  .addField(`**💳 Transferd To :**`,`<@${buy[message.guild.id].transfer}>`,true)
+  .addField(`**Date:**`,`\`\`\`${moment(message.author).format('DD/MM/YYYY')}\`\`\` `,true)
+  .setTimestamp();
+  if(log) log.send(gg)
+  const done = new Discord.RichEmbed()
+  .setColor('#36393e')
+  .setDescription(`**\`\`\`Done Buy Role ${brole.name}\`\`\`**`)
+  .setTimestamp();
+  message.member.addRole(brole)
+  message.channel.send(done);
+ var mmm = setTimeout(() => {
+message.member.removeRole(brole)
+}, 2592000000)
+  message.author.send(new Discord.RichEmbed()
+  .setColor("#36393e")
+  .setTitle('Role VIP')
+  .setDescription(`\`\`\`RANK NAME: ${brole.name} RANK PRICE: ${buy[message.guild.id].price}$ \`\`\``)
+  .setFooter(message.guild.name,message.guild.iconURL))
+})
+})
+}
+});
+
+
+client.on('message', message => {
+if (message.content === '#codes sans') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/sans.txt');
+const attachment = new Discord.Attachment(buffer, 'Sans.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+
+client.on('message', message => {
+if (message.content === '#codes minesweeper') {
+if (message.channel.id !== '709679324709781545') return message.reply(`** No --- <#709679324709781545> **`)
+let rank = message.guild.member(message.author).roles.find('name', '⌥ VIP +');
+if (!rank) return message.channel.send('**  There is no matching rank __VIP +__ .. **');
+const buffer = fs.readFileSync('codes/minesweeper.txt');
+const attachment = new Discord.Attachment(buffer, 'Minesweeper.txt');
+message.channel.send(`${message.author}, Done, Go ahead, Folder <:580185227381702676:677203444788101170> `, attachment);
+}
+});
+const buy = JSON.parse(fs.readFileSync("./buy2.json", "utf8"));
+client.on("message", message => {
+  if (message.content.startsWith(prefix + "buy rol11111111111111")) {
+    if (!buy[message.guild.id])
+      buy[message.guild.id] = {
+        role: "null",
+        price: "null",
+        transfer: "null",
+        onoff: "Off"
+      };
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    if (!message.member.hasPermission("MANAGE_GUILD")) return;
+    let args = message.content
+      .split(" ")
+      .slice(2)
+      .join(" ");
+    if (!args) return message.channel.send(`🙄 Please Type the role Name/ID`);
+    let role =
+      message.guild.roles.find("name", args) ||
+      message.guild.roles.find("id", args);
+    if (!role) return message.channel.send(`🙄 I Can't find this role`);
+    buy[message.guild.id].role = role.id;
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    message.channel.send(
+      new Discord.RichEmbed()
+        .setColor("#35393e")
+        .setFooter(message.author.tag, message.author.avatarURL)
+        .setTimestamp()
+        .setAuthor("Change settings", message.guild.iconURL)
+        .addField(`**Role Now**`, `**\`\`\`${role.name}\`\`\`**`, true)
+    );
+  }
+  if (message.content.startsWith(prefix + "buy aaaa4")) {
+    if (!message.member.hasPermission("MANAGE_GUILD")) return;
+    if (!buy[message.guild.id])
+      buy[message.guild.id] = {
+        role: "null",
+        price: "null",
+        transfer: "null",
+        onoff: "Off"
+      };
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    let args = message.content
+      .split(" ")
+      .slice(2)
+      .join(" ");
+    if (!args) return message.channel.send(`🙄 Please Type the role Price`);
+    if (isNaN(parseInt(args)))
+      return message.channel.send(`🙄 The price is wrong!`);
+    if (parseInt(args) < 0)
+      return message.channel.send(`🙄 The price is wrong!`);
+    buy[message.guild.id].price = args;
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    message.channel.send(
+      new Discord.RichEmbed()
+        .setColor("#36393e")
+        .setFooter(message.author.tag, message.author.avatarURL)
+        .setTimestamp()
+        .setAuthor("Change settings", message.guild.iconURL)
+        .addField(`**Role Price Now**`, `**\`\`\`${args}$\`\`\`**`, true)
+    );
+  }
+  if (message.content.startsWith(prefix + "buy tran31111111111111111")) {
+    if (!message.member.hasPermission("MANAGE_GUILD")) return;
+    if (!buy[message.guild.id])
+      buy[message.guild.id] = {
+        role: "null",
+        price: "null",
+        transfer: "null",
+        onoff: "Off"
+      };
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    let user =
+      message.mentions.members.first() ||
+      message.guild.members.get(message.content.split(" ")[2]);
+    buy[message.guild.id].transfer = user.id;
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    message.channel.send(
+      new Discord.RichEmbed()
+        .setColor("#36393e")
+        .setFooter(message.author.tag, message.author.avatarURL)
+        .setTimestamp()
+        .setAuthor("Change settings", message.guild.iconURL)
+        .addField(`**Trans To**`, `**${user}**`, true)
+    );
+  }
+  if (message.content.startsWith(prefix + "buy on3")) {
+    if (!message.member.hasPermission("MANAGE_GUILD")) return;
+    if (!buy[message.guild.id])
+      buy[message.guild.id] = {
+        role: "null",
+        price: "null",
+        transfer: "null",
+        onoff: "Off"
+      };
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    buy[message.guild.id].onoff = "On";
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    let on1 = new Discord.RichEmbed()
+      .setColor("#36393e")
+      .setDescription(`**\`\`\`The BuyRole Has Been Enabled\`\`\`**`);
+    message.channel.send(on1);
+  }
+  if (message.content.startsWith(prefix + "buy of")) {
+    if (!message.member.hasPermission("MANAGE_GUILD")) return;
+    if (!buy[message.guild.id])
+      buy[message.guild.id] = {
+        role: "null",
+        price: "null",
+        transfer: "null",
+        onoff: "Off"
+      };
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    buy[message.guild.id].onoff = "Off";
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    let off1 = new Discord.RichEmbed()
+      .setColor("#36393e")
+      .setDescription(`**\`\`\`The BuyRole has been disabled\`\`\`**`);
+    message.channel.send(off1);
+  }
+  if (message == prefix + "buy premium") {
+    if (!buy[message.guild.id])
+      buy[message.guild.id] = {
+        role: "null",
+        price: "null",
+        transfer: "null",
+        onoff: "Off"
+      };
+    fs.writeFile("./buy2.json", JSON.stringify(buy), err => {
+      if (err) console.error(err);
+    });
+    let pp = buy[message.guild.id].price;
+    let brole = message.guild.roles.find("id", buy[message.guild.id].role);
+    let btrans = buy[message.guild.id].transfer;
+    if (!brole)
+      return message.channel.send(`🙁 Please setup the command again`);
+    if (!message.guild.members.find("id", buy[message.guild.id].transfer))
+      return message.channel.send(`🙁 Please setup the command again`);
+    if (buy[message.guild.id].onoff === "Off")
+      return message.channel.send(
+        `🙁 - the command has been disabled\nplease type __${prefix}buy on__ to turn it on`
+      );
+    if (message.author.id === buy[message.guild.id].transfer)
+      return message.channel.send(
+        `you can't buy a rank because you can't transfer credits to your self 🤗`
+      );
+    if (message.member.roles.find(r => r.id == buy[message.guild.id].role))
+      return message.reply(
+        `**You already have the rank \`${brole.name}\` ✅**`
+      );
+    message.channel
+      .send(
+        new Discord.RichEmbed()
+          .setColor("#36393e")
+          .addField(
+            `**Command:**`,
+            `**\`#credits ${message.guild.members.get(
+              buy[message.guild.id].transfer
+            )} ${buy[message.guild.id].price}\`**`
+          )
+      )
+      .then(msgs => {
+        let lPrice = Math.floor(pp - pp * (5 / 100));
+        let filter = response =>
+          response.author.id == "567703512763334685" &&
+          response.mentions._content.includes(
+            `:moneybag: | ${message.author.username}, has transferred \`$${lPrice}\` to <@${buy[message.guild.id].transfer}>`
+          );
+        message.channel
+          .awaitMessages(filter, {
+            maxMatches: 1,
+            time: 240000,
+            errors: ["time"]
+          })
+          .then(collected => {
+            let log = message.guild.channels.find("name", `❖・log・premium`);
+            let gg = new Discord.RichEmbed()
+              .setColor("#36393e")
+              .setThumbnail(
+                `https://cdn.discordapp.com/attachments/584630360017469461/588151955063570433/582096911448801288.png`
+              )
+              .setAuthor(
+                `New purchase`,
+                `https://cdn.discordapp.com/attachments/584630360017469461/584687464334098432/581239984376381455.gif`
+              )
+              .addField(
+                `**User :**`,
+                `${message.author.id}، ${message.author}`,
+                true
+              )
+              .addField(`**Role :**`, `\`\`\`${brole.name}\`\`\``, true)
+              .addField(
+                `**💰 Rank Price :**`,
+                `\`\`\`${buy[message.guild.id].price}$\`\`\``,
+                true
+              )
+              .addField(
+                `**💳 Transferd To :**`,
+                `<@${buy[message.guild.id].transfer}>`,
+                true
+              )
+              .addField(
+                `**Date:**`,
+                `\`\`\`${moment(message.author).format("DD/MM/YYYY")}\`\`\` `,
+                true
+              )
+              .setTimestamp();
+            if (log) log.send(gg);
+            const done = new Discord.RichEmbed()
+              .setColor("#36393e")
+              .setDescription(`**\`\`\`Done Buy Role ${brole.name}\`\`\`**`)
+              .setTimestamp();
+            message.member.addRole(brole);
+            message.channel.send(done);
+            var mmm = setTimeout(() => {
+              message.member.removeRole(brole);
+            }, 2592000000);
+            message.author.send(
+              new Discord.RichEmbed()
+                .setColor("#36393e")
+                .setTitle("Role VIP")
+                .setDescription(
+                  `\`\`\`RANK NAME: ${brole.name} RANK PRICE: ${buy[message.guild.id].price}$ \`\`\``
+                )
+                .setFooter(message.guild.name, message.guild.iconURL)
+            );
+          });
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.content === prefix + "help-me-pro") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.react("✅");
+    let pages = [
+      `** 
+	<:694579669265285180:697941169912545290> | ~~#~~ 1  \` ${prefix}help-me-pro-1 \` <a:525837021558865961:677203465646243844> \` عداد الدعوت \` 
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 2  \` ${prefix}help-me-pro-2 \` <a:525837021558865961:677203465646243844> \` رد بصور \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 3  \` ${prefix}help-me-pro-3 \` <a:525837021558865961:677203465646243844> \` شراء رتب \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 4  \` ${prefix}help-me-pro-4 \` <a:525837021558865961:677203465646243844> \` صنع رد تلقائى \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 5  \` ${prefix}help-me-pro-5 \` <a:525837021558865961:677203465646243844> \`  لم تبعت رسائل فى خاص بوت تواصلك فى شات \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 6  \` ${prefix}help-me-pro-6 \` <a:525837021558865961:677203465646243844> \` عداد لاعضاء فى سيرفر \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 7  \` ${prefix}help-me-pro-7 \` <a:525837021558865961:677203465646243844> \` اذا منشن بوت يعمل نفس كان برد عليلك \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 8  \` ${prefix}help-me-pro-8 \` <a:525837021558865961:677203465646243844> \` نشاء 140 لون \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 9  \` ${prefix}help-me-pro-9 \` <a:525837021558865961:677203465646243844> \` كود اعلانات  مع تحديد الوقت \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 10  \` ${prefix}help-me-pro-10 \` <a:525837021558865961:677203465646243844> \` Codes kick مطور \`
+	** `,
+      `** 
+	<:694579669265285180:697941169912545290> | ~~#~~ 11  \` ${prefix}help-me-pro-11 \` <a:525837021558865961:677203465646243844> \` كود معلومات البوت \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 12  \` ${prefix}help-me-pro-12 \` <a:525837021558865961:677203465646243844> \` كود بان + بسبيب + مطور \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 13  \` ${prefix}help-me-pro-13 \` <a:525837021558865961:677203465646243844> \` كود انشاء ايموجي للشخص التمنشلو \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 14  \` ${prefix}help-me-pro-14 \` <a:525837021558865961:677203465646243844> \` كواد هلب مثل برو بوت \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 15 \` ${prefix}help-me-pro-15 \` <a:525837021558865961:677203465646243844> \` كواد القرعه \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 16  \` ${prefix}help-me-pro-16 \` <a:525837021558865961:677203465646243844> \` كواد رول مثل برو بوت \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 17  \` ${prefix}help-me-pro-17 \` <a:525837021558865961:677203465646243844> \` كود باند بل ايدي و المنشن \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 18  \` ${prefix}help-me-pro-18 \` <a:525837021558865961:677203465646243844> \` شراء رول \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 19  \` ${prefix}help-me-pro-19 \` <a:525837021558865961:677203465646243844> \` كواد عطاء رولات مطور \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 20  \` ${prefix}help-me-pro-20 \` <a:525837021558865961:677203465646243844> \` انفو اتفايت وتوب انفايت \`
+	**`,
+      `** 
+	<:694579669265285180:697941169912545290> | ~~#~~ 21  \` ${prefix}help-me-pro-21 \` <a:525837021558865961:677203465646243844> \` معلومات سيرفر مطور \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 22  \` ${prefix}help-me-pro-22 \` <a:525837021558865961:677203465646243844> \` كود التقديم مع الرفض بجيسون \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 23  \` ${prefix}help-me-pro-23 \` <a:525837021558865961:677203465646243844> \` كواد top مثل برو بوت \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 24  \` ${prefix}help-me-pro-24 \` <a:525837021558865961:677203465646243844> \` كواد ربط دعوه بوت \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 25  \` ${prefix}help-me-pro-25 \` <a:525837021558865961:677203465646243844> \` كواد يقال بوت دخل و خارج من سيرفر مطور \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 26  \` ${prefix}help-me-pro-26 \` <a:525837021558865961:677203465646243844> \` كواد لوق مثل برو بوت \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 27  \` ${prefix}help-me-pro-27 \` <a:525837021558865961:677203465646243844> \` كواد قائمه الوان \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 28  \` ${prefix}help-me-pro-28 \` <a:525837021558865961:677203465646243844> \` رول ركشن \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 29  \` ${prefix}help-me-pro-29 \` <a:525837021558865961:677203465646243844> \` كواد قيف اوى \`
+	
+	<:694579669265285180:697941169912545290> | ~~#~~ 30  \` ${prefix}help-me-pro-30 \` <a:525837021558865961:677203465646243844> \` كواد تكيت مع سجل \`
+	**`
+    ];
+    let page = 1;
+
+    let embed = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setFooter(`Page ${page} of ${pages.length}`)
+      .setDescription(pages[page - 1]);
+
+    message.channel.sendEmbed(embed).then(msg => {
+      msg.react("◀").then(r => {
+        msg.react("▶");
+
+        const backwardsFilter = (reaction, user) =>
+          reaction.emoji.name === "◀" && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) =>
+          reaction.emoji.name === "▶" && user.id === message.author.id;
+
+        const backwards = msg.createReactionCollector(backwardsFilter, {
+          time: 2000000
+        });
+        const forwards = msg.createReactionCollector(forwardsFilter, {
+          time: 2000000
+        });
+
+        backwards.on("collect", r => {
+          if (page === 1) return;
+          page--;
+          embed.setDescription(pages[page - 1]);
+          embed.setFooter(`Page ${page} of ${pages.length}`);
+          msg.edit(embed);
+        });
+        forwards.on("collect", r => {
+          if (page === pages.length) return;
+
+          page++;
+          embed.setDescription(pages[page - 1]);
+          embed.setFooter(`Page ${page} of ${pages.length}`);
+          msg.edit(embed);
+        });
+      });
+    });
+  }
+});
+
+////////////////////////////////////
+
+/* ,
+    `** 
+<:694579669265285180:697941169912545290> | ~~#~~ 31  \` ${prefix}help-me-pro-31 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 32  \` ${prefix}help-me-pro-32 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 33  \` ${prefix}help-me-pro-33 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 34  \` ${prefix}help-me-pro-34 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 35  \` ${prefix}help-me-pro-35 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 36  \` ${prefix}help-me-pro-36 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 37  \` ${prefix}help-me-pro-37 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 38  \` ${prefix}help-me-pro-38 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 39  \` ${prefix}help-me-pro-39 \` <a:525837021558865961:677203465646243844> \`  \`
+
+<:694579669265285180:697941169912545290> | ~~#~~ 40  \` ${prefix}help-me-pro-40 \` <a:525837021558865961:677203465646243844> \`  \`
+** */
+
+//////////////////////////////////
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-1") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : عداد الدعوت 
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Invitation-counter
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-2") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : رد بصور
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Reply-with-pictures
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-3") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : شراء رتب
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/purchase-ranks
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-4") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : صنع رد تلقائى
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Create-an-automatic-response
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-5") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe :  لم تبعت رسائل فى خاص بوت تواصلك فى شات
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Special-bot
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-6") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : عداد لاعضاء فى سيرفر
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Number-of-members
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-7") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : اذا منشن بوت يعمل نفس كان برد عليلك
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Munch-Pot
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-8") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : نشاء 140 لون
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/140-colors
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-9") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كود اعلانات  مع تحديد الوقت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/advertisement-codes
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-10") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : Codes kick مطور
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/code-kick-invite-manger
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-11") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كود معلومات البوت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Bot-information-code
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-12") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كود بان + بسبيب + مطور
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/code-kick-id-mention
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-13") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كود انشاء ايموجي للشخص التمنشلو
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Emoji-Munchen
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-14") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد هلب مثل برو بوت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/hrelp-ProBot
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-15") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد القرعه
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/lottery-code
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-16") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد رول مثل برو بوت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Role-ProBot
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-17") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كود باند بل ايدي و المنشن 
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Apple-Band-Code-and-Creator
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-18") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : شراء رول
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Buy-role
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-19") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد عطاء رولات مطور
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Role-ProBot-2
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-20") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : انفو اتفايت وتوب انفايت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Top-Infinite
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-21") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : معلومات سيرفر مطور
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Code-Server
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-22") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كود التقديم مع الرفض بجيسون
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Developer-submission-code
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-23") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد top مثل برو بوت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Top-members
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-24") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد ربط دعوه بوت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Quad-bind-invite-call
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-25") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد يقال بوت دخل و خارج من سيرفر مطور
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Entry-and-Exit
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-26") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد لوق مثل برو بوت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/log-ProBot
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-27") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد قائمه الوان مثل برو بوت
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Colors-list
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-28") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : رول ركشن
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Recruitment-roll
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-29") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد قيف اوى
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/GiveawayBot
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.content === prefix + "help-me-pro-30") {
+    if (message.channel.id !== "706410190810906685")
+      return message.reply(
+        `<:694579706842054737:697941194017210398> | ** Cannot write except in chat ( <#706410190810906685> ) **`
+      );
+    message.author
+      .send(
+        `**
+<a:33:674311916776194084> | __D__escribe : كواد تكيت مع سجل
+
+<a:28:674311913576071179> | __C__ode : https://4cash.me/Tickets-log
+
+<a:27:674311912917303296> | __T__ype __o__f __c__ode : __M__e __C__odes __P__remium
+
+**`
+      )
+      .then(m => {
+        message.react("✅");
+      })
+      .catch(() => {
+        message.react("❌");
+      });
+  }
+});
+
