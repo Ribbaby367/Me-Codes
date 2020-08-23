@@ -39,9 +39,10 @@ message.channel.send(`Please Just Wait: ${Milliseconds(repTime - Date.now())}`);
 });
 client.on("message",message =>{
 if(message.author.bot) return;
-const member = message.guild.member(message.mentions.users.first() || message.author;
+const member = message.guild.member(message.mentions.users.first()) || message.author;
 let rep = db.get(`REPs_${member.id}`)
 if(rep === null) rep = 0;
+if(member.id === message.author.id) return message.reply("علي كيف امك تعطي نفسك ؟")
 if(message,content.startsWith(prefix + "my-thanks"))
 return message.channel.send(`** ${member.username} have a \`${rep}\` thanks**`)})
 client.on("message", async message => {
