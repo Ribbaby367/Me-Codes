@@ -42,11 +42,12 @@ message.channel.send(`Please Just Wait: ${Milliseconds(repTime - Date.now())}`);
 });
 client.on("message",message =>{
 if(message.author.bot) return;
-const member = message.guild.member(message.mentions.users.first()) || message.author;
+const member = message.mentions.users.first() || message.author;
 let rep = db.get(`REPs_${member.id}`)
 if(rep === null) rep = 0;
-if(message,content.startsWith(prefix + "my-thanks"))
-return message.channel.send(`** ${member.username} have a \`${rep}\` thanks**`)})
+if(message.content.startsWith(prefix + "my-thanks"))
+return message.channel.send(`** ${member.username} have a \`${rep}\` thanks**`)
+})
 client.on("message", async message => {
   try {
     const translate = require("google-translate-open-api").default;
