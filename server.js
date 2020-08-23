@@ -17,13 +17,14 @@ const prefix = "#";
 const devs = ["697517724649390151"];
 client.login("NzM1NjAzNTg0NDAxNDA4MDQw.XxiqOQ.1crwllA4NV5SEQIHEpDoJ3vKdk4");
 client.on("ready", () => {
+	client.user.setActivity("#help-me | Me Codes v5.0.2")
   console.log(`Logged in as ${client.user.tag}!`);
 });
 const db = require("quick.db");
 const Milliseconds = require("pretty-ms");
 
 client.on("message", async message=>{
-if(message.author.bot)return;j
+if(message.author.bot)return;
 if(message.content.toLowerCase() == "#thank"){
 const repTime = db.get(`REP_TIME_${message.author.id}`);
 const member = message.guild.member(message.mentions.users.first() ||  false);
