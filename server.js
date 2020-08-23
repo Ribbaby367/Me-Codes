@@ -27,14 +27,14 @@ client.on("message", async message=>{
 if(message.author.bot)return;
 if(message.content.toLowerCase() == "#thank"){
 const repTime = db.get(`REP_TIME_${message.author.id}`);
-const member = message.guild.member(message.mentions.users.first() ||  false);
+const member = message.mentions.users.first();
 if(!member)return message.channel.send("I Cant The Member ");
 let rank = message.guild.member(member.id).roles.find('name', '⌥ Support');
 if(!rank) return message.reply("**This User Dont Have Role Support To Give him the thank!**")
-if(member.id === message.author.id) return message.reply("علي كيف امك تعطي نفسك ؟")
+if(message.author.id === member.id) return message.reply("علي كيف امك تعطي نفسك ؟")
 if(repTime < Date.now() || !repTime){
 db.set(`REP_TIME_${message.author.id}`, (Date.now() + 100000));
-db.add(`REPs_${member.user.id}`, 1);
+db.add(`REPs_${member.id}`, 1);
 message.channel.send(`You are thanked ${member}`);
 }else {
 message.channel.send(`Please Just Wait: ${Milliseconds(repTime - Date.now())}`);
