@@ -28,7 +28,7 @@ if(message.content.toLowerCase() == "#thank"){
 const repTime = db.get(`REP_TIME_${message.author.id}`);
 const member = message.guild.member(message.mentions.users.first() ||  false);
 if(!member)return message.channel.send("I Cant The Member ");
-let rank = message.guild.member(message.author).roles.find('name', '⌥ Support');
+let rank = message.guild.member(member.id).roles.find('name', '⌥ Support');
 if(!rank) return message.reply("**This User Dont Have Role Support To Give him the thank!**")
 if(repTime < Date.now() || !repTime){
 db.set(`REP_TIME_${message.author.id}`, (Date.now() + 100000));
