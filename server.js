@@ -25,7 +25,7 @@ const Milliseconds = require("pretty-ms");
 
 client.on("message", async message=>{
 if(message.author.bot)return;
-if(message.content.toLowerCase() == "#thank"){
+if(message.content.startsWith(prefix + "#thank")){
 const repTime = db.get(`REP_TIME_${message.author.id}`);
 const member = message.mentions.users.first();
 if(!member)return message.channel.send("I Cant The Member ");
