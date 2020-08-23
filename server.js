@@ -19,7 +19,31 @@ client.login("NzM1NjAzNTg0NDAxNDA4MDQw.XxiqOQ.1crwllA4NV5SEQIHEpDoJ3vKdk4");
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
+const db = require("quick.db");
+const Milliseconds = require("pretty-ms");
 
+client.on("message", async message=>{
+if(message.author.bot)return;
+if(message.content.toLowerCase() == "#thank"){
+const repTime = db.get(`REP_TIME_${message.author.id}`);
+const member = message.guild.member(message.mentions.users.first() ||  false);
+if(!member)return message.channel.send("I Cant The Member ");
+if(repTime < Date.now() || !repTime){
+db.set(`REP_TIME_${message.author.id}`, (Date.now() + 100000));
+db.add(`REPs_${member.user.id}`, 1);
+message.channel.send(`You are thanked ${member}`);
+}else {
+message.channel.send(`Please Just Wait: ${Milliseconds(repTime - Date.now())}`);
+}
+}
+});
+client.on("message",message =>{
+if(message.author.bot) return;
+const member = message.guild.member(message.mentions.users.first() || message.author;
+let rep = db.get(`REPs_${member.id}`)
+if(rep === null) rep = 0;
+if(message,content.startsWith(prefix + "my-thanks"))
+return message.channel.send(`** ${member.username} have a \`${rep}\` thanks**`)})
 client.on("message", async message => {
   try {
     const translate = require("google-translate-open-api").default;
