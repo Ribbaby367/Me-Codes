@@ -1916,7 +1916,7 @@ client.on("message", message => {
 });
 
 ////اعطاء وسحب رولات
-
+/*
 client.on("message", message => {
   var args = message.content.split(" ").slice(1);
 
@@ -1949,7 +1949,9 @@ client.on("message", message => {
 
   // if(!premium.includes(message.guild.id)) return message.channel.send(embed); else
 
-  if (msg.toLowerCase().startsWith(`${prefix}roleremove`)) {
+  if (msg.toLowerCase().startsWith(`${prefix}roleremove123456`)) {
+    if (!devs.includes(message.author.id))
+	  
     let embed = new Discord.RichEmbed()
       .setColor("#f30707")
       .setDescription(":x: | You need to buy `Premium`");
@@ -2153,7 +2155,7 @@ client.on("message", message => {
     }
   }
 });
-
+*/
 const bot = client;
 bot.mutes = require("./mutes.json");
 client.on("ready", () => {
