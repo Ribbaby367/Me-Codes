@@ -15,7 +15,7 @@ const fs = require("fs");
 const ms = require("ms");
 const prefix = "#";
 const devs = ["697517724649390151"];
-client.login("NzUwNDIzMzU5NjYxMjc3MjY0.X06UNw.pjU5H18YHDB5LLUyTxKPNuOqRKw")
+client.login("NzUwNDIzMzU5NjYxMjc3MjY0.X06UNw.pjU5H18YHDB5LLUyTxKPNuOqRKw")//("NzUwNDIzMzU5NjYxMjc3MjY0.X06UNw.pjU5H18YHDB5LLUyTxKPNuOqRKw")
 client.on("ready", () => {
 	client.user.setActivity("#help-me | Me Codes v5.0.2")
   console.log(`Logged in as ${client.user.tag}!`);
